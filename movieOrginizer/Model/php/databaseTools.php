@@ -122,6 +122,11 @@ class DatabaseTools
         }
     }
 
+    public function loginUser($username, $pwd, $userid)//needs to have already looked up the user id associated with the email.
+    {
+
+    }
+
     public function deleteUser($userid)
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);

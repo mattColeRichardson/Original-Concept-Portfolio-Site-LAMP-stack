@@ -1,0 +1,74 @@
+h2
+{
+    text-align: center;
+}
+h1
+{
+    font-size: 12vw;
+    text-align: center;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+  }
+input{
+    height: 5vh;
+    width: 95vw;
+}
+input::placeholder
+{
+    text-align: center;
+}
+.teamMemSelect
+{
+    height: 5vh;
+    width: 95vw;
+}
+.timeSelect
+{
+    height: 5vh;
+    width: 40vw;
+}
+.hours
+{
+    margin-right: 7vw;
+}
+.min
+{
+    margin-left: 8vw;
+}
+.timeDiv
+{
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: row;
+}
+.timeSet
+{
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+}
+.timeTitle
+{
+    text-align: center;
+    font-size: 24px;
+}
+.submit
+{
+    margin-left: 30vw;
+    margin-top: 1.5vh;
+    width: 35vw;
+    height: 10vh;
+}
+.content
+{
+    background-color: black;
+    color: whitesmoke;
+    padding: 1.5vw;
+    
+}
+.timeLeft
+{
+    font-size: 12vw;
+    text-align: center;
+}

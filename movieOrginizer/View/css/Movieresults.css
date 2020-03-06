@@ -1,0 +1,24 @@
+#content
+{
+    flex: 0 0 auto !important;
+}
+.movPoster
+{
+    height: 100%;
+}
+.hiddenMov
+{
+    display: none;
+}
+.hidden
+{
+    display: none;
+}
+.hiddenHead
+{
+    display: none;
+}
+.loginButton
+{
+    width: 100%;
+}

@@ -14,14 +14,14 @@ class DatabaseTools
         $this->name = $Name;
     }
 
-    public function lookupUser($value)//$dBName, $Row
+    public function lookupUser($id)//$dBName, $Row
     {
         //$sql = "SELECT ".$Collumn." FROM ".$dBName." WHERE ".$Row.";";
         
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
 
-        $sql = "SELECT * FROM users WHERE emailUsers=?;";
+        $sql = "SELECT * FROM users WHERE idusers=?;";
 
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
@@ -30,7 +30,7 @@ class DatabaseTools
         }
         else 
         {
-            mysqli_stmt_bind_param($stmt, "s", $value);
+            mysqli_stmt_bind_param($stmt, "s", $id);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt); 
             return $result;
@@ -124,7 +124,15 @@ class DatabaseTools
 
     public function loginUser($username, $pwd, $userid)//needs to have already looked up the user id associated with the email.
     {
-
+        $foundUser = lookupUser($userid);
+        if ($username == $foundUser)
+        {
+            //Then log them in
+        }
+        else
+        {
+            header("failed login");
+        }
     }
 
     public function deleteUser($userid)

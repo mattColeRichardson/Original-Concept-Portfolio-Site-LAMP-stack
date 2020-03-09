@@ -17,7 +17,6 @@ class DatabaseTools
     public function lookupUser($id)//$dBName, $Row
     {
         //$sql = "SELECT ".$Collumn." FROM ".$dBName." WHERE ".$Row.";";
-        
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
 
@@ -26,7 +25,7 @@ class DatabaseTools
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
-            mysqli_close($conn);
+            $this->disconnect($conn);
         }
         else 
         {
@@ -34,7 +33,7 @@ class DatabaseTools
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt); 
             return $result;
-            mysqli_close($conn);
+            $this->disconnect($conn);
         }
     }
 
@@ -56,12 +55,12 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "Change Failed";
-                mysqli_close($conn);
+                $this->disconnect($conn);
             }
             else
             {
                 echo "Change successfull";
-                mysqli_close($conn);
+                $this->disconnect($conn);
             }
         }
     }
@@ -76,7 +75,7 @@ class DatabaseTools
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
-            mysqli_close($conn);
+            $this->disconnect($conn);
         }
         else 
         {
@@ -84,12 +83,12 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "Change Failed";
-                mysqli_close($conn);
+                $this->disconnect($conn);
             }
             else
             {
                 echo "Change successfull";
-                mysqli_close($conn);
+                $this->disconnect($conn);
             }
         }
     }
@@ -103,7 +102,7 @@ class DatabaseTools
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
-            mysqli_close($conn);
+            $this->disconnect($conn);
         }
         else
         {
@@ -112,12 +111,12 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "Creation Failed";
-                mysqli_close($conn);
+                $this->disconnect($conn);
             }
             else
             {
                 echo "Creation successfull";
-                mysqli_close($conn);
+                $this->disconnect($conn);
             }
         }
     }
@@ -144,7 +143,7 @@ class DatabaseTools
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
-            mysqli_close($conn);
+            $this->disconnect($conn);
         }
         else
         {
@@ -152,19 +151,21 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "Failed to delete";
-                mysqli_close($conn);
+                $this->disconnect($conn);
             }
             else
             {
                 echo "Sucessfull Deletion";
-                mysqli_close($conn);
+                $this->disconnect($conn);
             }
         }
     }
     
     public function disconnect($dBName)
     {
-
+        
+        mysqli_close($dBName);
+        echo "Dissconnected";
     }
 }
 ?>

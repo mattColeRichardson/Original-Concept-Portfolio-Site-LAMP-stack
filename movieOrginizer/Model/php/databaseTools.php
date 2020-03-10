@@ -32,8 +32,8 @@ class DatabaseTools
             mysqli_stmt_bind_param($stmt, "s", $id);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt); 
-            return $result;
             $this->disconnect($conn);
+            return $result;
         }
     }
 

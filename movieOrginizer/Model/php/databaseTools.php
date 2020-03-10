@@ -147,7 +147,7 @@ class DatabaseTools
         }
     }
 
-    public function loginUser($username, $pwd)//needs to have already looked up the user id associated with the email.
+    public function loginUser($username, $pwd)
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
@@ -226,6 +226,11 @@ class DatabaseTools
     {
         mysqli_stmt_close($stmt);
         mysqli_close($dBName);
+    }
+
+    public function addFav($dBName, $RelationName, $userID)
+    {
+        //This is where you can create a database that has a relation to a current user.
     }
 }
 ?>

@@ -21,7 +21,7 @@
                 Settings
             </a>
             <div class="dropdown-divider"></div>
-            <form action="model/php/logout.php" method="POST">
+            <form action="Controller/php/logout.php" method="POST">
                 <button type="submit" class="dropdown-item" href="#" name = "logout-submit">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout

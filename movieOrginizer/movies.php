@@ -40,7 +40,15 @@
                     <!-- Topbar !END -->
 
                     <!-- Main fluid container -->
-                    <div class="container-fluid text-center" id = "media-search-results"></div>
+                    <div class="container-fluid text-center" id = "media-search-results">
+                      <table style = "width:100%">
+                        <tr>
+                          <th>Movie Poster</th>
+                          <th>Movie Title</th>
+                          <th>Movie Rating</th>
+                        </tr>
+                      </table>
+                    </div>
                     <!-- Main fluid container -->
                 </div>
             </div>

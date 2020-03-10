@@ -1,9 +1,9 @@
 <?php
-
+// new OOP style login system emplemented, need to address the creation of new users next.
 if(isset($_POST['login-submit']))
 {
     require "databaseTools.php";
-    $loginData = new databaseTools("loginsystem");//implementation of the new oop style..
+    $login = new databaseTools("loginsystem");
 
     require 'dbhandler.php';
     $emailUid = $_POST['userEmail'];
@@ -15,7 +15,7 @@ if(isset($_POST['login-submit']))
     }
     else
     {
-        $loginData -> loginUser($emailUid,$password);
+        $login -> loginUser($emailUid,$password);
     }
 }
 else

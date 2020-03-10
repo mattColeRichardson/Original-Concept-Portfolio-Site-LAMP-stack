@@ -93,6 +93,35 @@ class DatabaseTools
         }
     }
 
+    public function checkExistingEmail($username)
+    {
+        $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
+        $sql = "SELECT emailUsers FROM users WHERE emailUsers=?";
+        $stmt = mysqli_stmt_init($conn);
+
+        if(!mysqli_stmt_prepare($stmt, $sql))
+        {
+            header("Location: ../../register?error=dbError");
+            exit();
+        }
+        else
+        {
+            mysqli_stmt_bind_param($stmt, "s", $username);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_store_result($stmt);
+            $resultCheck = mysqli_stmt_num_rows($stmt);
+
+            if($resultCheck >0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
     public function createNewUser($email, $first, $last, $pwd)
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
@@ -101,7 +130,6 @@ class DatabaseTools
         $sql = "INSERT INTO users (emailUsers, firstName, lastName, pwdUsers) VALUES (?, ?, ?, ?)";
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
-            echo "False";
             $this->disconnect($conn);
         }
         else
@@ -110,13 +138,13 @@ class DatabaseTools
             mysqli_stmt_bind_param($stmt, "ssss", $email, $first, $last, $hashedpwd);
             if(!mysqli_stmt_execute($stmt))
             {
-                echo "Creation Failed";
                 $this->disconnect($conn);
+                return false;
             }
             else
             {
-                echo "Creation successfull";
                 $this->disconnect($conn);
+                return true;
             }
         }
     }
@@ -129,16 +157,16 @@ class DatabaseTools
         
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
-            header("Location: ../../login?error=DB&email=".$emailUid);
+            header("Location: ../../login?error=DB&email=".$username);
         }
         else
         {
-            mysqli_stmt_bind_param($stmt, 's', $emailUid);
+            mysqli_stmt_bind_param($stmt, 's', $username);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             if($row = mysqli_fetch_assoc($result))
             {
-                $pwdCheck = password_verify($password, $row['pwdUsers']);
+                $pwdCheck = password_verify($pwd, $row['pwdUsers']);
                 if ($pwdCheck == false)
                 {
                     header("Location: ../../login?error=InvalUsrPwd1");
@@ -198,6 +226,7 @@ class DatabaseTools
     
     public function disconnect($dBName)
     {
+        mysqli_stmt_close($stmt);
         mysqli_close($dBName);
     }
 }

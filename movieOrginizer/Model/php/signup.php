@@ -1,7 +1,9 @@
 <?php
 if(isset($_POST['signup-submit']))
 {
-    require 'dbhandler.php';
+    // require 'dbhandler.php'; old functional style.
+    require "databaseTools.php";
+    $login = new databaseTools("loginsystem");
 
     $username = $_POST['email'];
     $pwd = $_POST['Pwd'];
@@ -9,54 +11,32 @@ if(isset($_POST['signup-submit']))
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
 
-    if ($pwd !== $RepeatPwd) // check in js that all fields are entered
+    if ($pwd !== $RepeatPwd)
     {
         header("Location: ../../register?error=pwdMismatch&email=".$username."&fName=".$firstName."&lName=".$lastName);
         exit();
     }
     else
     {
-        $sql = "SELECT emailUsers FROM users WHERE emailUsers=?";
-        $stmt = mysqli_stmt_init($conn);
-
-        if(!mysqli_stmt_prepare($stmt, $sql))
-        {
-            header("Location: ../../register?error=dbError");
-            exit();
-        }
-        else
-        {
-            mysqli_stmt_bind_param($stmt, "s", $username);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_store_result($stmt);
-            $resultCheck = mysqli_stmt_num_rows($stmt);
-
-            if($resultCheck >0)
+            if($login -> checkExistingEmail($username))
             {
                 header("Location: ../../register?error=userTaken&fName=".$firstName."&lName=".$lastName);
                 exit();
             }
             else
             {
-                $sql = "INSERT INTO users (emailUsers, firstName, lastName, pwdUsers) VALUES (?, ?, ?, ?)";
-                $stmt = mysqli_stmt_init($conn);
-                if(!mysqli_stmt_prepare($stmt, $sql))
-                {
-                    header("Location: ../../register?error=dbError");
-                    exit();
-                }
-                else
-                {
-                    $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
-                    mysqli_stmt_bind_param($stmt, "ssss", $username, $firstName, $lastName, $hashedpwd);
-                    mysqli_stmt_execute($stmt);
-                    header("Location: ../../register?signup=success");
-                    exit();
-                }
+               if(!$login -> createNewUser($username, $firstName, $lastName, $pwd))
+               {
+                header("Location: ../../register?DatabaseError");
+               }
+               else
+               {
+                header("Location: ../../register?RegistrationSuccessfull");
+               }
+               
             }
-        }
     }
-    mysqli_stmt_close($stmt);
+    
     mysqli_close($conn);
 }
 else

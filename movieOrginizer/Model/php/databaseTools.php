@@ -121,16 +121,51 @@ class DatabaseTools
         }
     }
 
-    public function loginUser($username, $pwd, $userid)//needs to have already looked up the user id associated with the email.
+    public function loginUser($username, $pwd)//needs to have already looked up the user id associated with the email.
     {
-        $foundUser = lookupUser($userid);
-        if ($username == $foundUser)
+        $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT * FROM users WHERE emailUsers=?;";
+        
+        if(!mysqli_stmt_prepare($stmt, $sql))
         {
-            //Then log them in
+            header("Location: ../../login?error=DB&email=".$emailUid);
         }
         else
         {
-            header("failed login");
+            mysqli_stmt_bind_param($stmt, 's', $emailUid);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            if($row = mysqli_fetch_assoc($result))
+            {
+                $pwdCheck = password_verify($password, $row['pwdUsers']);
+                if ($pwdCheck == false)
+                {
+                    header("Location: ../../login?error=InvalUsrPwd1");
+                    exit();
+                }
+                elseif($pwdCheck == true)
+                {
+                    session_start();
+                    $_SESSION['userId'] = $row['idusers'];
+                    $_SESSION['emailUser'] = $row['emailUsers'];
+                    $_SESSION['fNameUser'] = $row['firstName'];
+                    $_SESSION['lNameUser'] = $row['lastName'];
+
+                    header("Location: ../../home?login=success");
+                    exit();
+                }
+                else
+                {
+                    header("Location: ../../login?error=InvalUsrPwd2");
+                    exit();
+                }
+            }
+            else
+            {
+                header("Location: ../../login?error=InvalUsrPwd3");
+                exit();
+            }
         }
     }
 
@@ -163,9 +198,7 @@ class DatabaseTools
     
     public function disconnect($dBName)
     {
-        
         mysqli_close($dBName);
-        echo "Dissconnected";
     }
 }
 ?>

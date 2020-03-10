@@ -1,7 +1,6 @@
 <?php
 require "Model/php/databaseTools.php";
 $loginData = new databaseTools("loginsystem");
-
 $loginData -> lookupUser("testemail@gmail.com");
 
 

@@ -1,8 +1,6 @@
 <?php
 class DatabaseTools
 {
-    //private $user = $_SESSION['userId']; // these get called when the object gets created
-    //private $userEmail = $_SESSION['emailUser'];
     private $servername = "localhost";
     private $dBUsername = "root";
     private $dBPassword = "Evaluate531246";

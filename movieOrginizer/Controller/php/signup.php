@@ -2,7 +2,7 @@
 if(isset($_POST['signup-submit']))
 {
     // require 'dbhandler.php'; old functional style.
-    require "databaseTools.php";
+    require "../Model/php/databaseTools.php";
     $login = new databaseTools("loginsystem");
 
     $username = $_POST['email'];

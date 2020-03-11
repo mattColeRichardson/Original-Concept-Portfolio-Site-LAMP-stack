@@ -6,10 +6,10 @@ class DatabaseTools
     private $dBPassword = "Evaluate531246";
     private $dbPort = "3306";
 
-    public function __construct($Name)
+    public function __construct($DBName)
     {
         //constructor
-        $this->name = $Name;
+        $this->name = $DBName;
     }
 
     public function lookupUser($id)//$dBName, $Row
@@ -228,9 +228,30 @@ class DatabaseTools
         mysqli_close($dBName);
     }
 
-    public function addFav($dBName, $RelationName, $userID)
+    public function addRating($mediaTitle, $mediaRating, $userID)
     {
-        //This is where you can create a database that has a relation to a current user.
+        $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "INSERT INTO ratedmovies (mediaTitle, mediaRating, idUsers) VALUES (?, ?, ?)";
+
+        if(!mysqli_stmt_prepare($stmt, $sql))
+        {
+            $this->disconnect($conn);
+        }
+        else
+        {
+            mysqli_stmt_bind_param($stmt, "sss", $mediaTitle, $mediaRating, $userID);
+            if(!mysqli_stmt_execute($stmt))
+            {
+                $this->disconnect($conn);
+                return false;
+            }
+            else
+            {
+                $this->disconnect($conn);
+                return true;
+            }
+        }
     }
 }
 ?>

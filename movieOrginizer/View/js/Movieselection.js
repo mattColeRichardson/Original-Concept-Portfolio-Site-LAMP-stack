@@ -22,6 +22,7 @@ function postSearch(data)
                 document.getElementsByClassName("movieInfo")[i].innerHTML ='Release Date: ' + currentMov.Year;
 
                 //Need to send this to my DB somehow here. also how do you get session ID in Javascript
+                document.cookie = "This is the cookie that i want to see."; //works! wahoo.
                 i++;
             } 
         }
@@ -43,3 +44,4 @@ function displaySelected(data)
         document.getElementById("movieInfo").innerHTML = "Release Date: "+data.Year +" Directed By: "+ data.Director + "Genre :" + data.Genre;
     });
 }
+

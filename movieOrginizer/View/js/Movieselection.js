@@ -21,8 +21,6 @@ function postSearch(data)
                 document.getElementsByClassName("movieTitle")[i].innerHTML = 'Title: ' + currentMov.Title;
                 document.getElementsByClassName("movieInfo")[i].innerHTML ='Release Date: ' + currentMov.Year;
 
-                //Need to send this to my DB somehow here. also how do you get session ID in Javascript
-                document.cookie = "This is the cookie that i want to see."; //works! wahoo.
                 i++;
             } 
         }
@@ -42,6 +40,8 @@ function displaySelected(data)
         document.getElementById("moviePoster").src = data.Poster
         document.getElementById("moviePlot").innerHTML = data.Plot;
         document.getElementById("movieInfo").innerHTML = "Release Date: "+data.Year +" Directed By: "+ data.Director + "Genre :" + data.Genre;
+        
+        document.cookie = "movieTitle = " + "" + data.Title; // Set the cookie so that we can pass it and parse it in PHP
     });
 }
 

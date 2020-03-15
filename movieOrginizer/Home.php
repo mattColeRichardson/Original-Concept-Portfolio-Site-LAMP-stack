@@ -67,7 +67,7 @@
 <!-- Core components-->
   <div>
     <!-- View-->
-    <script src="View/Movieselection.js"></script>
+    <script src="View/js/Movieselection.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="View/vendor/jquery/jquery.min.js"></script>
     <script src="View/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

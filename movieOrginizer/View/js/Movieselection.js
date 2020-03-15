@@ -20,6 +20,8 @@ function postSearch(data)
                 document.getElementsByClassName("movPoster")[i].innerHTML ='<img src="' + currentMov.Poster +'" alt = "' + currentMov.Title + 'movie Poster"' + '>';
                 document.getElementsByClassName("movieTitle")[i].innerHTML = 'Title: ' + currentMov.Title;
                 document.getElementsByClassName("movieInfo")[i].innerHTML ='Release Date: ' + currentMov.Year;
+
+                //Need to send this to my DB somehow here. also how do you get session ID in Javascript
                 i++;
             } 
         }

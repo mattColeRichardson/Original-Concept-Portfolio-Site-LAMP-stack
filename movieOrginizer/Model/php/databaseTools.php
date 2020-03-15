@@ -253,30 +253,37 @@ class DatabaseTools
             }
         }
     }
+
     public function changeRating($mediaID, $mediaRating)
     {
         //Where you will add a rating postumusly.
     }
+
     public function favMedia($mediaTitle,$mediaID)
     {
         //Where you will add a check to the favorite column of the ratings table
     }
+
     public function removeFav($mediaTitle,$mediaID)
     {
         //Where you will remove the fav from the list of movies you have already set as favorite.
     }
+
     public function createFavList($mediaTitle, $mediaID, $listTitle)
     {
         //Where you will create a list of movies that you can catagorize however you like.
     }
+
     public function removeFavList($listTitle, $userID)
     {
         //Where you will remove a Fav List from a account.
     }
+
     public function lookupUsersFavList($userID)
     {
         //Where you will be able to look at the list your friends have.
     }
+    
     public function viewUsersFav($userID, $listTitle)
     {
         //the function that will allow you to select a fav from the brought up list.

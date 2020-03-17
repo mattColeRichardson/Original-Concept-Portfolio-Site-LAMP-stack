@@ -19,7 +19,6 @@ function search(event)
         userSearchXS = searchBoxXS.value;
         if (userSearch == "")
         {
-            console.log("You did not search for anything!");
             getMovie(userSearchXS).then(function(value)
             {
                 postSearch(value);

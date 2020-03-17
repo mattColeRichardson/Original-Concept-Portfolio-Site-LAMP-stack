@@ -11,7 +11,7 @@ class DatabaseTools
         //constructor
         $this->name = $DBName;
     }
-
+//Login section------------------------------------------------------------------------------------------------------------------------------------------------------------
     public function lookupUser($id)//$dBName, $Row
     {
         //$sql = "SELECT ".$Collumn." FROM ".$dBName." WHERE ".$Row.";";
@@ -178,6 +178,9 @@ class DatabaseTools
                     $_SESSION['fNameUser'] = $row['firstName'];
                     $_SESSION['lNameUser'] = $row['lastName'];
 
+                    //$hashedUserID = $_SESSION['userId'];
+                    //setcookie("userID", $hashedUserID , time() + (86400). "/");
+
                     header("Location: ../../home?login=success");
                     exit();
                 }
@@ -221,26 +224,29 @@ class DatabaseTools
             }
         }
     }
-    
-    public function disconnect($dBName)
+    //End of login section-----------------------------------------------------------------------------------------------------------------------------------------------
+
+    public function disconnect($dBName, $stmt)
     {
-        mysqli_stmt_close($stmt);
-        mysqli_close($dBName);
+        
+        // mysqli_stmt_close($stmt);
+        // mysqli_close($dBName);
     }
 
-    public function addRating($mediaTitle, $mediaRating, $userID)
+    //movie reviews section----------------------------------------------------------------------------------------------------------------------------------------------------------
+    public function addRating($mediaTitle, $mediaRating, $userID, $mediaType)
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
-        $sql = "INSERT INTO ratedmovies (mediaTitle, mediaRating, idUsers) VALUES (?, ?, ?)";
-
+        $sql = "INSERT INTO ratedmovies (mediaTitle, mediaRating, idUsers, mediaType) VALUES (?, ?, ?, ?)";
+        //I also need to check to see if the title already exist in the database, for that selected user.
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             $this->disconnect($conn);
         }
         else
         {
-            mysqli_stmt_bind_param($stmt, "sss", $mediaTitle, $mediaRating, $userID);
+            mysqli_stmt_bind_param($stmt, "ssss", $mediaTitle, $mediaRating, $userID, $mediaType);
             if(!mysqli_stmt_execute($stmt))
             {
                 $this->disconnect($conn);
@@ -288,6 +294,14 @@ class DatabaseTools
     {
         //the function that will allow you to select a fav from the brought up list.
     }
+    //End of movie reviews section-----------------------------------------------------------------------------------------------------------------------------------------------
+    public function sendUserMsg($userID, $messagePassed, $timeSent, $receivingUser)
+    {
 
+    }
+    public function lookupUserMsg($userID)
+    {
+
+    }
 }
 ?>

@@ -1,6 +1,5 @@
 var selectMe = document.getElementsByClassName("selectMovie");
 var i = 0;
-console.log("display movie selected Ran");
 while(i<9)
 {
     selectMe[i].addEventListener("click", selectMovieBtn);
@@ -9,7 +8,6 @@ while(i<9)
 
 function selectMovieBtn(event)
 {
-    console.log("You clicked a button!");
     var movieTitle = document.getElementsByClassName("movieTitle")[event.target.value];
     movieSelected = event.target.value;
     selectedMovie(movieTitle.innerHTML);

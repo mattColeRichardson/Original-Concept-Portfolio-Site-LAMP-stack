@@ -2,7 +2,6 @@ var starChange = document.getElementsByClassName("starImg");
 var i=0;
 while (i<=4)
 {
-    console.log(i);
     starChange[i].addEventListener("mouseenter", starGold);
     i++;
 }

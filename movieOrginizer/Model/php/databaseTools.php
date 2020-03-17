@@ -23,14 +23,14 @@ class DatabaseTools
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
-            $this->disconnect($conn);
+            $this->disconnect($conn, $stmt);
         }
         else 
         {
             mysqli_stmt_bind_param($stmt, "s", $id);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt); 
-            $this->disconnect($conn);
+            $this->disconnect($conn,$stmt);
             return $result;
         }
     }
@@ -53,12 +53,12 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "Change Failed";
-                $this->disconnect($conn);
+                $this->disconnect($conn,$stmt);
             }
             else
             {
                 echo "Change successfull";
-                $this->disconnect($conn);
+                $this->disconnect($conn,$stmt);
             }
         }
     }
@@ -73,7 +73,7 @@ class DatabaseTools
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
-            $this->disconnect($conn);
+            $this->disconnect($conn,$stmt);
         }
         else 
         {
@@ -81,12 +81,12 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "Change Failed";
-                $this->disconnect($conn);
+                $this->disconnect($conn,$stmt);
             }
             else
             {
                 echo "Change successfull";
-                $this->disconnect($conn);
+                $this->disconnect($conn,$stmt);
             }
         }
     }
@@ -95,7 +95,7 @@ class DatabaseTools
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $sql = "SELECT emailUsers FROM users WHERE emailUsers=?";
-        $stmt = mysqli_stmt_init($conn);
+        $stmt = mysqli_stmt_init($conn,$stmt);
 
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
@@ -128,7 +128,7 @@ class DatabaseTools
         $sql = "INSERT INTO users (emailUsers, firstName, lastName, pwdUsers) VALUES (?, ?, ?, ?)";
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
-            $this->disconnect($conn);
+            $this->disconnect($conn,$stmt);
         }
         else
         {
@@ -136,12 +136,12 @@ class DatabaseTools
             mysqli_stmt_bind_param($stmt, "ssss", $email, $first, $last, $hashedpwd);
             if(!mysqli_stmt_execute($stmt))
             {
-                $this->disconnect($conn);
+                $this->disconnect($conn,$stmt);
                 return false;
             }
             else
             {
-                $this->disconnect($conn);
+                $this->disconnect($conn,$stmt);
                 return true;
             }
         }
@@ -215,12 +215,12 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "Failed to delete";
-                $this->disconnect($conn);
+                $this->disconnect($conn,$stmt);
             }
             else
             {
                 echo "Sucessfull Deletion";
-                $this->disconnect($conn);
+                $this->disconnect($conn,$stmt);
             }
         }
     }
@@ -242,24 +242,58 @@ class DatabaseTools
         //I also need to check to see if the title already exist in the database, for that selected user.
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
-            $this->disconnect($conn);
+            $this->disconnect($conn,$stmt);
         }
         else
         {
             mysqli_stmt_bind_param($stmt, "ssss", $mediaTitle, $mediaRating, $userID, $mediaType);
             if(!mysqli_stmt_execute($stmt))
             {
-                $this->disconnect($conn);
+                $this->disconnect($conn,$stmt);
                 return false;
             }
             else
             {
-                $this->disconnect($conn);
+                $this->disconnect($conn,$stmt);
                 return true;
             }
         }
     }
 
+    public function checkIfRatingExist($idUsers, $mediaTitle)
+    {
+        $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
+        $stmt = mysqli_stmt_init($conn);
+
+        $sql = "SELECT * FROM ratedmovies WHERE idUsers = ? AND mediaTitle IS NOT NULL";
+        if(!mysqli_stmt_prepare($stmt, $sql))
+        {
+            $this->disconnect($conn,$stmt);
+        }
+        else
+        {
+            mysqli_stmt_bind_param($stmt, "s", $mediaTitle);
+            if(!mysqli_stmt_execute($stmt))
+            {
+                if(mysqli_stmt_result($stmt)!= null)
+                {
+                    return true;
+                }
+                else
+                {
+                    echo "You have already rated that move"; // ask later for a overwrite of the movie rating.
+                }
+            }
+            else
+            {
+                $this->disconnect($conn,$stmt);
+            }
+        }
+
+        
+        
+
+    }
     public function changeRating($mediaID, $mediaRating)
     {
         //Where you will add a rating postumusly.

@@ -234,11 +234,11 @@ class DatabaseTools
     }
 
     //movie reviews section----------------------------------------------------------------------------------------------------------------------------------------------------------
-    public function addRating($mediaTitle, $mediaRating, $userID, $mediaType)
+    public function addRating($mediaTitle, $mediaRating, $userID, $mediaType, $mediaReview)
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
-        $sql = "INSERT INTO ratedmovies (mediaTitle, mediaRating, idUsers, mediaType) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO ratedmovies (mediaTitle, mediaRating, idUsers, mediaType, review) VALUES (?, ?, ?, ?. ?)";
         //I also need to check to see if the title already exist in the database, for that selected user.
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
@@ -246,14 +246,16 @@ class DatabaseTools
         }
         else
         {
-            mysqli_stmt_bind_param($stmt, "ssss", $mediaTitle, $mediaRating, $userID, $mediaType);
+            mysqli_stmt_bind_param($stmt, "sssss", $mediaTitle, $mediaRating, $userID, $mediaType, $mediaReview);
             if(!mysqli_stmt_execute($stmt))
             {
+                echo "there was a issue commiting your review to the database sorry try again later!";
                 $this->disconnect($conn,$stmt);
                 return false;
             }
             else
             {
+                echo "Your Review has been commited to the database";
                 $this->disconnect($conn,$stmt);
                 return true;
             }

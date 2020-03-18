@@ -238,8 +238,7 @@ class DatabaseTools
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
-        $sql = "INSERT INTO ratedmovies (mediaTitle, mediaRating, idUsers, mediaType, review) VALUES (?, ?, ?, ?. ?)";
-        //I also need to check to see if the title already exist in the database, for that selected user.
+        $sql = "INSERT INTO ratedmovies (mediaTitle, mediaRating, idUsers, mediaType, review) VALUES (?, ?, ?, ?, ?)";
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             $this->disconnect($conn,$stmt);
@@ -267,28 +266,37 @@ class DatabaseTools
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
 
-        $sql = "SELECT * FROM ratedmovies WHERE idUsers = ? AND mediaTitle IS NOT NULL";
+        $sql = "SELECT * FROM ratedmovies WHERE idUsers = ? AND mediaTitle = ? AND review IS NOT NULL";
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             $this->disconnect($conn,$stmt);
         }
         else
         {
-            mysqli_stmt_bind_param($stmt, "s", $mediaTitle);
+            mysqli_stmt_bind_param($stmt, "ss",$idUsers, $mediaTitle);
             if(!mysqli_stmt_execute($stmt))
             {
-                if(mysqli_stmt_result($stmt)!= null)
-                {
-                    return true;
-                }
-                else
-                {
-                    echo "You have already rated that move"; // ask later for a overwrite of the movie rating.
-                }
+               return false;
             }
             else
             {
-                $this->disconnect($conn,$stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                $row = mysqli_fetch_assoc($result);
+                
+                
+                if(!$result || empty($row[$mediaTitle]))// figure this assosiative aray out tomorow.
+                {
+                    echo "big boi";
+                    $this->disconnect($conn,$stmt);
+                    return false;
+                }
+                else
+                {
+                    echo "small boi ";
+                    $this->disconnect($conn,$stmt);
+                    return true;
+                }
+                $this->disconnect($conn,$stmt);     
             }
         }
 

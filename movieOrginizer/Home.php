@@ -11,6 +11,11 @@
         <meta name="author" content="">
       
         <title>Movie Orginizer</title>
+
+        <!-- Core plugin JavaScript-->
+        <script src="View/vendor/jquery/jquery.min.js"></script>
+        <script src="View/vendor/jquery-easing/jquery.easing.min.js"></script>
+        
       
         <!-- Custom fonts for this template-->
         <link href="View/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -66,14 +71,14 @@
 
 <!-- Core components-->
   <div>
+    <!-- Model-->
+    <script src="Model/JS/imdbAPI.js"></script>
     <!-- View-->
-    <script src="View/js/Movieselection.js"></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="View/vendor/jquery/jquery.min.js"></script>
+    
     <script src="View/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="View/vendor/jquery-easing/jquery.easing.min.js"></script>
+    
 
     <!-- Custom scripts for all pages-->
     <script src="View/js/sb-admin-2.min.js"></script>
@@ -81,13 +86,7 @@
     <!-- Page level plugins -->
     <script src="View/vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Model-->
-    <script src="Model/imdbAPI.js"></script>
-
-    <!-- Controller-->
-    <script src="Controller/display-media-result.js"></script>
   </div>
-  
   
   </body>
 </html>

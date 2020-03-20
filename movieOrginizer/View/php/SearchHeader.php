@@ -10,6 +10,8 @@
     if(isset($_SESSION['userId']))
     {
        include 'View/php/Search.php';
+       echo "<script src='Model/js/mediaSearch.js'></script>";
+       echo "<script src='View/js/oop/MovieFinder.js'></script>";
     }
     ?>
     

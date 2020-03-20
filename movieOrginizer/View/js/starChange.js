@@ -86,5 +86,5 @@ function starGray()
 }
 function starGoldClick()
 {
-    console.log("you clicked a star");
+    
 }

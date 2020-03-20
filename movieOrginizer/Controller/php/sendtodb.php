@@ -18,18 +18,17 @@ if(isset($_POST['submit']))
         $Review = $_POST["movieReview"];
         if (!$movieReview ->checkIfRatingExist($userId,$movieTitle))
         {
-            //redirect to a page explaining what happened.
-            echo "you have already rated that video.";
+            header("Location: ../../home?AlreadyRatedThatMovie");
         }
         else
         {
             if (!$movieReview -> addRating($movieTitle, $Rating, $userId, $mediaType, $Review))
             {
-                echo "could not complete your request";
+                header("Location: ../../home?Error=True");
             }
             else 
             {
-                echo "Gotcha";
+                header("Location: ../../home?Successfull");
             }
         }
         

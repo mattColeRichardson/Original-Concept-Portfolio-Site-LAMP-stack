@@ -1,7 +1,7 @@
 function postSearch(data)
 {
     $("#media-search-results").empty();
-    $("#media-search-results").load("view/media-search", function()
+    $("#media-search-results").load("view/Html/media-search", function()
     {
         let i=0;
         let y=0;
@@ -34,12 +34,12 @@ function postSearch(data)
 
 function displaySelected(data)
 {
-    $("#media-search-results").load("View/SelectedMovie.html", function()
+    $("#media-search-results").load("View/Html/SelectedMovie.html", function()
     {
         document.getElementById("movieTitle").innerHTML = data.Title;
         document.getElementById("moviePoster").src = data.Poster
         document.getElementById("moviePlot").innerHTML = data.Plot;
-        document.getElementById("movieInfo").innerHTML = "Release Date: "+data.Year +" Directed By: "+ data.Director + "Genre :" + data.Genre;
+        document.getElementById("movieInfo").innerHTML = "Release Date: "+ data.Year +" Directed By: "+ data.Director + "Genre :" + data.Genre;
         
         document.cookie = "movieTitle = " + "" + data.Title; // Set the cookie so that we can pass it and parse it in PHP
         document.cookie = "mediaType = " + "" + data.Type;

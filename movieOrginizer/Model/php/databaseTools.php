@@ -266,7 +266,7 @@ class DatabaseTools
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
 
-        $sql = "SELECT * FROM ratedmovies WHERE idUsers = ? AND mediaTitle = ? AND review IS NOT NULL";
+        $sql = "SELECT idUsers FROM ratedmovies WHERE idUsers = ? AND mediaTitle = ? AND review IS NOT NULL";
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             $this->disconnect($conn,$stmt);
@@ -281,18 +281,14 @@ class DatabaseTools
             else
             {
                 $result = mysqli_stmt_get_result($stmt);
-                $row = mysqli_fetch_assoc($result);
-                
-                
-                if(!$result || empty($row[$mediaTitle]))// figure this assosiative aray out tomorow.
+
+                if(mysqli_num_rows($result)> 0)// figure this assosiative aray out tomorow.
                 {
-                    echo "big boi";
                     $this->disconnect($conn,$stmt);
                     return false;
                 }
                 else
                 {
-                    echo "small boi ";
                     $this->disconnect($conn,$stmt);
                     return true;
                 }

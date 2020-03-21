@@ -5,7 +5,8 @@ function mediaSearch()
 
     this.searchBtnXS = document.getElementById("searchBtnXS");
     this.searchBoxXS = document.getElementById("searchBoxXS");
-    this.starChange; 
+    this.starChange;
+    this.starValue;
     var that = this;
     this.clearScreen = function()
     {
@@ -91,7 +92,7 @@ function mediaSearch()
         var movieTitle = document.getElementsByClassName("movieTitle")[event.target.value];
         movieSelected = event.target.value;
         $("#media-search-results").empty();
-        searchByTitle(movieTitle.innerHTML.slice(7)).then(function(value)
+        searchByTitle(movieTitle.innerHTML.slice(7)).then(function(value)//This is a function as part of my IMDBAPI.js and is nessisary for the opperation of this programm 
         {
             displaySelected(value);
         });
@@ -128,7 +129,7 @@ function mediaSearch()
         var k=0;
         while (k<=4)
         {
-            that.starChange[k].addEventListener("click", that.starGoldClick);
+            that.starChange[k].addEventListener("mousedown", that.starGoldClick);
             k++;
         }
     }
@@ -136,28 +137,28 @@ function mediaSearch()
     {
         {
             var starID = event.srcElement.id;
-            var starNum = starID.charAt(starID.length-1)
+            var starNum = starID.charAt(starID.length -1) 
             switch(starNum)
             {
-                case "0":
-                    that.starChange[0].src = "View/img/star.png";
-                    break;
                 case "1":
                     that.starChange[0].src = "View/img/star.png";
-                    that.starChange[1].src = "View/img/star.png";
                     break;
                 case "2":
                     that.starChange[0].src = "View/img/star.png";
                     that.starChange[1].src = "View/img/star.png";
-                    that.starChange[2].src = "View/img/star.png";
                     break;
                 case "3":
                     that.starChange[0].src = "View/img/star.png";
                     that.starChange[1].src = "View/img/star.png";
                     that.starChange[2].src = "View/img/star.png";
-                    that.starChange[3].src = "View/img/star.png";
                     break;
                 case "4":
+                    that.starChange[0].src = "View/img/star.png";
+                    that.starChange[1].src = "View/img/star.png";
+                    that.starChange[2].src = "View/img/star.png";
+                    that.starChange[3].src = "View/img/star.png";
+                    break;
+                case "5":
                     that.starChange[0].src = "View/img/star.png";
                     that.starChange[1].src = "View/img/star.png";
                     that.starChange[2].src = "View/img/star.png";
@@ -174,25 +175,25 @@ function mediaSearch()
             var starNum = starID.charAt(starID.length-1)
             switch(starNum)
             {
-                case "0":
-                    that.starChange[0].src = "View/img/stargray.png";
-                    break;
                 case "1":
                     that.starChange[0].src = "View/img/stargray.png";
-                    that.starChange[1].src = "View/img/stargray.png";
                     break;
                 case "2":
                     that.starChange[0].src = "View/img/stargray.png";
                     that.starChange[1].src = "View/img/stargray.png";
-                    that.starChange[2].src = "View/img/stargray.png";
                     break;
                 case "3":
                     that.starChange[0].src = "View/img/stargray.png";
                     that.starChange[1].src = "View/img/stargray.png";
                     that.starChange[2].src = "View/img/stargray.png";
-                    that.starChange[3].src = "View/img/stargray.png";
                     break;
                 case "4":
+                    that.starChange[0].src = "View/img/stargray.png";
+                    that.starChange[1].src = "View/img/stargray.png";
+                    that.starChange[2].src = "View/img/stargray.png";
+                    that.starChange[3].src = "View/img/stargray.png";
+                    break;
+                case "5":
                     that.starChange[0].src = "View/img/stargray.png";
                     that.starChange[1].src = "View/img/stargray.png";
                     that.starChange[2].src = "View/img/stargray.png";
@@ -203,8 +204,8 @@ function mediaSearch()
         }
     }
     this.starGoldClick = function()
-    {
-        // input something to do with the star when cliked like create a cookie with the value and send it to php.
-        console.log("You cliked a star");
+    { 
+        document.cookie = "selectedRating = " + "" + event.target.id;
     }
+    
 }

@@ -12,7 +12,7 @@ if(isset($_POST['submit']))
     else
     {
         $movieTitle = $_COOKIE['movieTitle'];
-        $Rating = 0;
+        $Rating = $_COOKIE["selectedRating"];
         $userId = $_SESSION['userId'];
         $mediaType = $_COOKIE['mediaType'];
         $Review = $_POST["movieReview"];

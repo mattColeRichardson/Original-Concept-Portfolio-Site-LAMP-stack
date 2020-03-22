@@ -20,14 +20,15 @@
             </div>
             <div class="card-body">
                 <form action="/movieOrginizer/Controller/php/sendtodb.php" method="POST">
-                    <h3 class = "justify-content-center">Notes on the movie</h3>
+                    <h1 class = "justify-content-center">Notes on the movie</h1>
                     <input name = "movieReview" class = "movieReview" type="text">
-                    <span class="row justify-content-center">
-                        <img id="1" class = "starImg" src="View/img/stargray.png" alt="Rating for movie 1 of 5">
-                        <img id="2" class = "starImg" src="View/img/stargray.png" alt="Rating for movie 2 of 5">
-                        <img id="3" class = "starImg" src="View/img/stargray.png" alt="Rating for movie 3 of 5">
-                        <img id="4" class = "starImg" src="View/img/stargray.png" alt="Rating for movie 4 of 5">
-                        <img id="5" class = "starImg" src="View/img/stargray.png" alt="Rating for movie 5 of 5">
+                    <h1>Select a rating:</h1>
+                    <span class="row justify-content-center" id = "starGroup">
+                        <img id="1" class = "star" src="View/img/stargray.png" alt="Rating for movie 1 of 5">
+                        <img id="2" class = "star" src="View/img/stargray.png" alt="Rating for movie 2 of 5">
+                        <img id="3" class = "star" src="View/img/stargray.png" alt="Rating for movie 3 of 5">
+                        <img id="4" class = "star" src="View/img/stargray.png" alt="Rating for movie 4 of 5">
+                        <img id="5" class = "star" src="View/img/stargray.png" alt="Rating for movie 5 of 5">
                     </span>
                     <button class="btn btn-primary rateSubmit" name="submit" type="submit">Submit</button>
                 </form>

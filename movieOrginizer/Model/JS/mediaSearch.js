@@ -113,99 +113,39 @@ function mediaSearch()
     }
     function loadStars()
     {
-        that.starChange = document.getElementsByClassName("starImg");
-        var i=0;
-        while (i<=4)
+        stars = Array.prototype.slice.call(document.querySelectorAll(".star"));
+
+        document.getElementById("starGroup").addEventListener("click", function(event)
         {
-            that.starChange[i].addEventListener("mouseenter", that.starGold);
-            i++;
-        }
-        var j=0;
-        while (j<=4)
-        {
-            that.starChange[j].addEventListener("mouseleave", that.starGray);
-            j++;
-        }
-        var k=0;
-        while (k<=4)
-        {
-            that.starChange[k].addEventListener("mousedown", that.starGoldClick);
-            k++;
-        }
-    }
-    this.starGold = function()
-    {
-        {
-            var starID = event.srcElement.id;
-            var starNum = starID.charAt(starID.length -1) 
-            switch(starNum)
+            if(event.target.classList.contains("star"))
             {
-                case "1":
-                    that.starChange[0].src = "View/img/star.png";
-                    break;
-                case "2":
-                    that.starChange[0].src = "View/img/star.png";
-                    that.starChange[1].src = "View/img/star.png";
-                    break;
-                case "3":
-                    that.starChange[0].src = "View/img/star.png";
-                    that.starChange[1].src = "View/img/star.png";
-                    that.starChange[2].src = "View/img/star.png";
-                    break;
-                case "4":
-                    that.starChange[0].src = "View/img/star.png";
-                    that.starChange[1].src = "View/img/star.png";
-                    that.starChange[2].src = "View/img/star.png";
-                    that.starChange[3].src = "View/img/star.png";
-                    break;
-                case "5":
-                    that.starChange[0].src = "View/img/star.png";
-                    that.starChange[1].src = "View/img/star.png";
-                    that.starChange[2].src = "View/img/star.png";
-                    that.starChange[3].src = "View/img/star.png";
-                    that.starChange[4].src = "View/img/star.png";
-                    break;
+                setStarCookie((stars.indexOf(event.target) + 1));
+                clearStarsToGrey(4);
+                setStarsGold(stars.indexOf(event.target));
             }
-        }
+        });
     }
-    this.starGray = function()
+    function setStarsGold(starSelected)
     {
+        i = starSelected;
+        while (i >= 0)
         {
-            var starID = event.srcElement.id;
-            var starNum = starID.charAt(starID.length-1)
-            switch(starNum)
-            {
-                case "1":
-                    that.starChange[0].src = "View/img/stargray.png";
-                    break;
-                case "2":
-                    that.starChange[0].src = "View/img/stargray.png";
-                    that.starChange[1].src = "View/img/stargray.png";
-                    break;
-                case "3":
-                    that.starChange[0].src = "View/img/stargray.png";
-                    that.starChange[1].src = "View/img/stargray.png";
-                    that.starChange[2].src = "View/img/stargray.png";
-                    break;
-                case "4":
-                    that.starChange[0].src = "View/img/stargray.png";
-                    that.starChange[1].src = "View/img/stargray.png";
-                    that.starChange[2].src = "View/img/stargray.png";
-                    that.starChange[3].src = "View/img/stargray.png";
-                    break;
-                case "5":
-                    that.starChange[0].src = "View/img/stargray.png";
-                    that.starChange[1].src = "View/img/stargray.png";
-                    that.starChange[2].src = "View/img/stargray.png";
-                    that.starChange[3].src = "View/img/stargray.png";
-                    that.starChange[4].src = "View/img/stargray.png";
-                    break;
-            }
+            document.getElementsByClassName("star")[i].src = "View/img/star.png";
+            i--;
         }
     }
-    this.starGoldClick = function()
+    function clearStarsToGrey(allStars)
+    {
+        i = allStars;
+        while (i >= 0)
+        {
+            document.getElementsByClassName("star")[i].src = "View/img/stargray.png";
+            i--;
+        }
+    }
+    function setStarCookie(starSelected)
     { 
-        document.cookie = "selectedRating = " + "" + event.target.id;
+        document.cookie = "selectedRating = " + "" + starSelected;
     }
     
 }

@@ -21,6 +21,11 @@
 
         <!-- myStylesheets-->
         <link href="view/css/Movieresults.css" rel="stylesheet">
+
+        <?php
+        require "Model/php/databaseTools.php";
+        $Data = new databaseTools("ratings");
+        ?>
       
   </head>
 
@@ -41,13 +46,16 @@
 
                     <!-- Main fluid container -->
                     <div class="container-fluid text-center" id = "media-search-results">
-                      <table style = "width:100%">
-                        <tr>
-                          <th>Movie Poster</th>
-                          <th>Movie Title</th>
-                          <th>Movie Rating</th>
-                        </tr>
-                      </table>
+                      <?php 
+                      if(isset($_SESSION['userId']))
+                      {
+                        require "view/php/myMovies.php";
+                      }
+                      else
+                      {
+                        require "view/php/notLoggedIn.php";
+                      }
+                      ?>
                     </div>
                     <!-- Main fluid container -->
                 </div>

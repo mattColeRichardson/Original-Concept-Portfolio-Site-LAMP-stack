@@ -305,6 +305,46 @@ class DatabaseTools
         //Where you will add a rating postumusly.
     }
 
+    public function pullRatingTitle($userID)
+    {
+        $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT mediaTitle From ratedmovies WHERE idUsers = ?";
+        
+        if(!mysqli_stmt_prepare($stmt, $sql))
+        {
+            $this->disconnect($conn,$stmt);
+        }
+        else
+        {
+            mysqli_stmt_bind_param($stmt, "s", $userID);
+            if(!mysqli_stmt_execute($stmt))
+            {
+                echo "there was a issue commiting your review to the database sorry try again later!";
+                $this->disconnect($conn,$stmt);
+                return false;
+            }
+            else
+            {
+                $result = mysqli_stmt_get_result($stmt);
+                if(empty($result))
+                {
+                    echo "you have reviewed no movies";
+                }
+                else
+                {
+                    while ($row = mysqli_fetch_array($result))
+                    {
+                        foreach ($row as $r)
+                        {
+                            echo "<td> ".$r." <td>";
+                            echo "</br>";
+                        }
+                    }
+                }
+            }
+        }
+    }
     public function favMedia($mediaTitle,$mediaID)
     {
         //Where you will add a check to the favorite column of the ratings table

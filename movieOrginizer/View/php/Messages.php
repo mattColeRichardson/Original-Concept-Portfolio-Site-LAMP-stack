@@ -1,3 +1,4 @@
+<?php $message = new databaseTools("messages") ?>
 <!-- Dropdown - Messages -->
 <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
     <div class="form-inline mr-auto w-100 navbar-search">

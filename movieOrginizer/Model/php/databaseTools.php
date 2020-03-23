@@ -309,7 +309,7 @@ class DatabaseTools
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT mediaTitle From ratedmovies WHERE idUsers = ?";
+        $sql = "SELECT mediaTitle , mediaRating , review From ratedmovies WHERE idUsers = ?";
         
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
@@ -329,17 +329,21 @@ class DatabaseTools
                 $result = mysqli_stmt_get_result($stmt);
                 if(empty($result))
                 {
-                    echo "you have reviewed no movies";
+                    echo "<tr>";
+                    echo "<td> You don't have  </td>";
+                    echo "<td> Any Ratings </td>";
+                    echo "<td> yet. </td>";
+                    echo "</tr>";
                 }
                 else
                 {
                     while ($row = mysqli_fetch_array($result))
                     {
-                        foreach ($row as $r)
-                        {
-                            echo "<td> ".$r." <td>";
-                            echo "</br>";
-                        }
+                            echo "<tr>";
+                            echo "<td class = 'rowResult'> ".$row[0]." </td>";
+                            echo "<td class = 'rowResult'> ".$row[1]." </td>";
+                            echo "<td class = 'rowResult'> ".$row[2]." </td>";
+                            echo "</tr>";
                     }
                 }
             }
@@ -375,13 +379,21 @@ class DatabaseTools
         //the function that will allow you to select a fav from the brought up list.
     }
     //End of movie reviews section-----------------------------------------------------------------------------------------------------------------------------------------------
+
+    //Messages section-----------------------------------------------------------------------------------------------------------------------------------------------------------
     public function sendUserMsg($userID, $messagePassed, $timeSent, $receivingUser)
     {
 
     }
-    public function lookupUserMsg($userID)
+    public function lookupUsersMsgs($userID, $ID)
     {
 
     }
+    
+    public function lookupSingleMsg($userID, $ID)
+    {
+        
+    }
+    //End of messages section-----------------------------------------------------------------------------------------------------------------------------------------------------------
 }
 ?>

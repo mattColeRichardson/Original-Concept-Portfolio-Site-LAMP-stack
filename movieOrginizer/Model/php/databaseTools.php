@@ -14,7 +14,6 @@ class DatabaseTools
 //Login section------------------------------------------------------------------------------------------------------------------------------------------------------------
     public function lookupUser($id)//$dBName, $Row
     {
-        //$sql = "SELECT ".$Collumn." FROM ".$dBName." WHERE ".$Row.";";
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
 
@@ -383,16 +382,39 @@ class DatabaseTools
     //Messages section-----------------------------------------------------------------------------------------------------------------------------------------------------------
     public function sendUserMsg($userID, $messagePassed, $timeSent, $receivingUser)
     {
+        $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
+        $stmt = mysqli_stmt_init($conn);
 
+        $sql = "INSERT INTO messages FROM users WHERE idusers=?;";
+        
+        if(!mysqli_stmt_prepare($stmt, $sql))
+        {
+            echo "False";
+            $this->disconnect($conn, $stmt);
+        }
+        else 
+        {
+            mysqli_stmt_bind_param($stmt, "s", $id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt); 
+            $this->disconnect($conn,$stmt);
+            return $result;
+        }
     }
     public function lookupUsersMsgs($userID, $ID)
     {
+        $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
+        $stmt = mysqli_stmt_init($conn);
 
+        $sql = "SELECT * FROM users WHERE idusers=?;";
     }
     
     public function lookupSingleMsg($userID, $ID)
     {
-        
+        $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
+        $stmt = mysqli_stmt_init($conn);
+
+        $sql = "SELECT * FROM users WHERE idusers=?;";
     }
     //End of messages section-----------------------------------------------------------------------------------------------------------------------------------------------------------
 }

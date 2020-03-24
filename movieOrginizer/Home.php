@@ -41,7 +41,10 @@
                 <div id="content">
                     
                     <!-- Topbar -->
-                    <?php include "View/php/SearchHeader.php";?>
+                    <?php 
+                    require "./Model/php/databaseTools.php";
+                    include "View/php/SearchHeader.php";
+                    ?>
                     <!-- Topbar !END -->
 
                     <!-- Main fluid container -->

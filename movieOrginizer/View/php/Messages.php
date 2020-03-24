@@ -1,4 +1,14 @@
-<?php $message = new databaseTools("messages") ?>
+<?php 
+if(isset($_SESSION['userId']))
+{
+    $message = new databaseTools("messages"); 
+    $lookupUser = new databaseTools("loginsystem"); 
+    date_default_timezone_set("America/Chicago");
+    //$message->sendUserMsg("2", "this is a test", date("H:i"), "9");
+    echo $_SESSION['userId'];
+    $msg = $message->lookupUsersMsgs("2");
+}
+?>
 <!-- Dropdown - Messages -->
 <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
     <div class="form-inline mr-auto w-100 navbar-search">
@@ -24,6 +34,20 @@
     <h6 class="dropdown-header">
         Friends PM's
     </h6>
+    <?php
+    echo '
+        <a class="dropdown-item d-flex align-items-center" href="#">
+        <div class="dropdown-list-image mr-3">
+        <img class="rounded-circle" src="view/img/MattR.jpg" alt="">
+        <div class="status-indicator bg-success"></div>
+        </div>
+        <div class="font-weight-bold">
+        <div class="text-truncate">'.$msg[2].'</div>
+        <div class="small text-gray-500"> From:'.$message->lookupUser($msg[0]).' @ '.$msg[3].'</div>
+        </div>
+        </a>
+        ';
+    ?>
     <a class="dropdown-item d-flex align-items-center" href="#">
         <div class="dropdown-list-image mr-3">
         <img class="rounded-circle" src="view/img/MattR.jpg" alt="">

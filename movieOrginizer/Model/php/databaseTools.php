@@ -17,11 +17,12 @@ class DatabaseTools
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
 
-        $sql = "SELECT * FROM users WHERE idusers=?;";
+        $sql = "SELECT firstName FROM users WHERE idusers=?";
 
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
+            
             $this->disconnect($conn, $stmt);
         }
         else 
@@ -29,7 +30,8 @@ class DatabaseTools
             mysqli_stmt_bind_param($stmt, "s", $id);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt); 
-            $this->disconnect($conn,$stmt);
+            
+            $this->disconnect($conn);
             return $result;
         }
     }
@@ -44,7 +46,8 @@ class DatabaseTools
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
-            mysqli_close($conn);
+            
+            $this->disconnect($conn);
         }
         else 
         {
@@ -52,12 +55,14 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "Change Failed";
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
             }
             else
             {
                 echo "Change successfull";
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
             }
         }
     }
@@ -72,7 +77,8 @@ class DatabaseTools
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
-            $this->disconnect($conn,$stmt);
+            
+            $this->disconnect($conn);
         }
         else 
         {
@@ -80,12 +86,14 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "Change Failed";
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
             }
             else
             {
                 echo "Change successfull";
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
             }
         }
     }
@@ -127,7 +135,8 @@ class DatabaseTools
         $sql = "INSERT INTO users (emailUsers, firstName, lastName, pwdUsers) VALUES (?, ?, ?, ?)";
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
-            $this->disconnect($conn,$stmt);
+            
+            $this->disconnect($conn);
         }
         else
         {
@@ -135,12 +144,14 @@ class DatabaseTools
             mysqli_stmt_bind_param($stmt, "ssss", $email, $first, $last, $hashedpwd);
             if(!mysqli_stmt_execute($stmt))
             {
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
                 return false;
             }
             else
             {
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
                 return true;
             }
         }
@@ -206,6 +217,7 @@ class DatabaseTools
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
+            
             $this->disconnect($conn);
         }
         else
@@ -214,25 +226,25 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "Failed to delete";
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
             }
             else
             {
                 echo "Sucessfull Deletion";
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
             }
         }
     }
-    //End of login section-----------------------------------------------------------------------------------------------------------------------------------------------
+//End of login section-----------------------------------------------------------------------------------------------------------------------------------------------
 
-    public function disconnect($dBName, $stmt)
+    public function disconnect($conn)
     {
-        
-        // mysqli_stmt_close($stmt);
-        // mysqli_close($dBName);
+        mysqli_close($conn);
     }
 
-    //movie reviews section----------------------------------------------------------------------------------------------------------------------------------------------------------
+//movie reviews section----------------------------------------------------------------------------------------------------------------------------------------------------------
     public function addRating($mediaTitle, $mediaRating, $userID, $mediaType, $mediaReview)
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
@@ -240,7 +252,8 @@ class DatabaseTools
         $sql = "INSERT INTO ratedmovies (mediaTitle, mediaRating, idUsers, mediaType, review) VALUES (?, ?, ?, ?, ?)";
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
-            $this->disconnect($conn,$stmt);
+            
+            $this->disconnect($conn);
         }
         else
         {
@@ -248,13 +261,15 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "there was a issue commiting your review to the database sorry try again later!";
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
                 return false;
             }
             else
             {
                 echo "Your Review has been commited to the database";
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
                 return true;
             }
         }
@@ -268,7 +283,8 @@ class DatabaseTools
         $sql = "SELECT idUsers FROM ratedmovies WHERE idUsers = ? AND mediaTitle = ? AND review IS NOT NULL";
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
-            $this->disconnect($conn,$stmt);
+            
+            $this->disconnect($conn);
         }
         else
         {
@@ -283,15 +299,17 @@ class DatabaseTools
 
                 if(mysqli_num_rows($result)> 0)// figure this assosiative aray out tomorow.
                 {
-                    $this->disconnect($conn,$stmt);
+                    
+                    $this->disconnect($conn);
                     return false;
                 }
                 else
                 {
-                    $this->disconnect($conn,$stmt);
+                    
+                    $this->disconnect($conn);
                     return true;
                 }
-                $this->disconnect($conn,$stmt);     
+                $this->disconnect($conn);     
             }
         }
 
@@ -312,7 +330,8 @@ class DatabaseTools
         
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
-            $this->disconnect($conn,$stmt);
+            
+            $this->disconnect($conn);
         }
         else
         {
@@ -320,7 +339,8 @@ class DatabaseTools
             if(!mysqli_stmt_execute($stmt))
             {
                 echo "there was a issue commiting your review to the database sorry try again later!";
-                $this->disconnect($conn,$stmt);
+                
+                $this->disconnect($conn);
                 return false;
             }
             else
@@ -385,8 +405,29 @@ class DatabaseTools
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
 
-        $sql = "INSERT INTO messages FROM users WHERE idusers=?;";
+        $sql = "INSERT INTO allmsgs (userID , msg, timeSent, ID) VALUES (?, ?, ?, ?)";
         
+        if(!mysqli_stmt_prepare($stmt, $sql))
+        {
+            echo "False";
+            $this->disconnect($conn, $stmt);
+        }
+        else 
+        {
+            mysqli_stmt_bind_param($stmt, "ssss", $userID, $messagePassed, $timeSent, $receivingUser);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt); 
+            
+            $this->disconnect($conn);
+        }
+    }
+    public function whoSentMsg($id)//$dBName, $Row
+    {
+        $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, "loginsystem", $this->dbPort);
+        $stmt = mysqli_stmt_init($conn);
+
+        $sql = "SELECT firstName FROM users WHERE idusers=?";
+
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
@@ -397,24 +438,60 @@ class DatabaseTools
             mysqli_stmt_bind_param($stmt, "s", $id);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt); 
-            $this->disconnect($conn,$stmt);
+            
+            $this->disconnect($conn);
             return $result;
         }
     }
-    public function lookupUsersMsgs($userID, $ID)
+    public function lookupUsersMsgs($userID)
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
 
-        $sql = "SELECT * FROM users WHERE idusers=?;";
+        $sql = "SELECT * FROM allmsgs WHERE userID=?";
+
+        if(!mysqli_stmt_prepare($stmt, $sql))
+        {
+            echo "False";
+            
+            $this->disconnect($conn);
+        }
+        else 
+        {
+            mysqli_stmt_bind_param($stmt, "s", $userID);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt); 
+            
+            $this->disconnect($conn);
+            $row = mysqli_fetch_array($result);
+            return $row;
+        }
     }
+    
     
     public function lookupSingleMsg($userID, $ID)
     {
         $conn = mysqli_connect($this->servername, $this->dBUsername, $this->dBPassword, $this->name, $this->dbPort);
         $stmt = mysqli_stmt_init($conn);
 
-        $sql = "SELECT * FROM users WHERE idusers=?;";
+        $sql = "SELECT * FROM messages WHERE userID=? AND ID=?";
+
+        if(!mysqli_stmt_prepare($stmt, $sql))
+        {
+            echo "False";
+            
+            $this->disconnect($conn);
+        }
+        else 
+        {
+            mysqli_stmt_bind_param($stmt, "ss", $userID, $ID);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt); 
+            
+            $this->disconnect($conn);
+            $row = mysqli_fetch_array($result);
+            return $row;
+        }
     }
     //End of messages section-----------------------------------------------------------------------------------------------------------------------------------------------------------
 }

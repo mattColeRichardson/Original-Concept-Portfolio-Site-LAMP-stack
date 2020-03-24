@@ -36,7 +36,9 @@
                 <div id="content">
                     
                     <!-- Topbar -->
-                    <?php include "View/php/Header.php";?>
+                    <?php 
+                    require "./Model/php/databaseTools.php";
+                    include "View/php/Header.php";?>
                     <!-- Topbar !END -->
 
                     <!-- Main fluid container -->

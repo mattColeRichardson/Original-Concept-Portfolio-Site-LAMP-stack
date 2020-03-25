@@ -33,9 +33,9 @@ class msgTools extends Conn
         {
             $stmt->bind_param("s", $userID);
             $stmt->execute();
-            $stmt->bind_result($msg); 
+            $stmt->bind_result($row);
+            $stmt->fetch_assoc();
             $this->disconnect($conn);
-            $row = $result->fetch_array(MYSQLI_NUM);
             return $row;
         }
     }
@@ -44,22 +44,20 @@ class msgTools extends Conn
         $conn = $this->connect("messages");
         $stmt = mysqli_stmt_init($conn);
 
-        $sql = "SELECT * FROM messages WHERE userID=? AND ID=?";
+        $sql = "SELECT msg FROM allmsgs WHERE userID=? AND ID=?";
 
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             echo "False";
-            
             $this->disconnect($conn);
         }
         else 
         {
-            mysqli_stmt_bind_param($stmt, "ss", $userID, $ID);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt); 
-            
+            $stmt->bind_param("ss", $userID, $ID);
+            $stmt->execute();
+            $stmt->bind_result($row); 
+            $stmt->fetch();
             $this->disconnect($conn);
-            $row = mysqli_fetch_array($result);
             return $row;
         }
     }

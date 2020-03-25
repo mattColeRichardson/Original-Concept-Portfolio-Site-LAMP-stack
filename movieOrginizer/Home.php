@@ -1,5 +1,11 @@
 <?php
-  session_start();
+session_start();
+error_reporting(E_ALL);
+ini_set('ignore_repeated_errors', TRUE); 
+ini_set('display_errors', FALSE);
+ini_set('log_errors', TRUE); 
+ini_set('error_log', 'errors.log'); 
+ini_set('log_errors_max_len', 1024);
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -7,8 +7,8 @@ if(isset($_SESSION['userId']))
     $lookupUser = new loginTools(); 
     date_default_timezone_set("America/Chicago");
     //$message->sendUserMsg("2", "this is a test", date("H:i"), "9");
-    //echo $_SESSION['userId'];
-    $msg = $message->lookupUsersMsgs($_SESSION['userId']);
+    $msg = $message->lookupUsersMsgs(2);
+    echo $msg;
 }
 ?>
 <!-- Dropdown - Messages -->
@@ -36,7 +36,7 @@ if(isset($_SESSION['userId']))
     <h6 class="dropdown-header">
         Friends PM's
     </h6>
-    <!-- <?php
+    <?php
      echo '
         <a class="dropdown-item d-flex align-items-center" href="#">
         <div class="dropdown-list-image mr-3">
@@ -49,7 +49,7 @@ if(isset($_SESSION['userId']))
         </div>
         </a>
        ';
-    ?> -->
+    ?>
     <a class="dropdown-item d-flex align-items-center" href="#">
         <div class="dropdown-list-image mr-3">
         <img class="rounded-circle" src="view/img/MattR.jpg" alt="">

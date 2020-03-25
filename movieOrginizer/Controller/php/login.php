@@ -1,8 +1,8 @@
 <?php
 if(isset($_POST['login-submit']))
 {
-    require "../../Model/php/databaseTools.php";
-    $login = new databaseTools("loginsystem");
+    require_once "../../Model/php/loginTools.php";
+    $login = new loginTools();
 
     $emailUid = $_POST['userEmail'];
     $password = $_POST['pwd'];
@@ -13,7 +13,7 @@ if(isset($_POST['login-submit']))
     }
     else
     {
-        $login -> loginUser($emailUid,$password);
+        $login->loginUser($emailUid,$password);
     }
 }
 else

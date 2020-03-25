@@ -42,7 +42,7 @@
                     
                     <!-- Topbar -->
                     <?php 
-                    require "./Model/php/databaseTools.php";
+                    require "./Model/php/loginTools.php";
                     include "View/php/SearchHeader.php";
                     ?>
                     <!-- Topbar !END -->

@@ -1,12 +1,12 @@
 <?php 
 if(isset($_SESSION['userId']))
 {
-    $message = new databaseTools("messages"); 
-    $lookupUser = new databaseTools("loginsystem"); 
+    //$message = new msgTools(""); 
+    $lookupUser = new loginTools(); 
     date_default_timezone_set("America/Chicago");
     //$message->sendUserMsg("2", "this is a test", date("H:i"), "9");
-    echo $_SESSION['userId'];
-    $msg = $message->lookupUsersMsgs("2");
+    //echo $_SESSION['userId'];
+    //$msg = $message->lookupUsersMsgs("2");
 }
 ?>
 <!-- Dropdown - Messages -->
@@ -34,8 +34,8 @@ if(isset($_SESSION['userId']))
     <h6 class="dropdown-header">
         Friends PM's
     </h6>
-    <?php
-    echo '
+    <!-- <?php
+     echo '
         <a class="dropdown-item d-flex align-items-center" href="#">
         <div class="dropdown-list-image mr-3">
         <img class="rounded-circle" src="view/img/MattR.jpg" alt="">
@@ -43,11 +43,11 @@ if(isset($_SESSION['userId']))
         </div>
         <div class="font-weight-bold">
         <div class="text-truncate">'.$msg[2].'</div>
-        <div class="small text-gray-500"> From:'.$message->lookupUser($msg[0]).' @ '.$msg[3].'</div>
+        <div class="small text-gray-500"> From:'.$lookupUser->lookupUser($msg[0]).' @ '.$msg[3].'</div>
         </div>
         </a>
-        ';
-    ?>
+       ';
+    ?> -->
     <a class="dropdown-item d-flex align-items-center" href="#">
         <div class="dropdown-list-image mr-3">
         <img class="rounded-circle" src="view/img/MattR.jpg" alt="">

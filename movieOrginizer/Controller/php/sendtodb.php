@@ -3,8 +3,8 @@ if(isset($_POST['submit']))
 {
     session_start();
     
-    require "../../Model/php/databaseTools.php";
-    $movieReview = new databaseTools("ratings");
+    //require "../../Model/php/reviewTools.php";
+    //$movieReview = new databaseTools("ratings");
     if(!isset($_COOKIE['movieTitle']))
     {
         echo "Error finding the movie you selected please select another.";

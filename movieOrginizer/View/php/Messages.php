@@ -1,12 +1,14 @@
 <?php 
 if(isset($_SESSION['userId']))
 {
-    //$message = new msgTools(""); 
+    require_once "./Model/php/msgTools.php";
+    require_once "./Model/php/loginTools.php";
+    $message = new msgTools(); 
     $lookupUser = new loginTools(); 
     date_default_timezone_set("America/Chicago");
     //$message->sendUserMsg("2", "this is a test", date("H:i"), "9");
     //echo $_SESSION['userId'];
-    //$msg = $message->lookupUsersMsgs("2");
+    $msg = $message->lookupUsersMsgs($_SESSION['userId']);
 }
 ?>
 <!-- Dropdown - Messages -->

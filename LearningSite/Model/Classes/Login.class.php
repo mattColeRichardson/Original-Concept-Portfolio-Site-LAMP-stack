@@ -111,5 +111,27 @@ class Login extends DbConnect
             }
         }
     }
+    public function deleteUser($userid)
+    {
+        $conn = $this->connect("loginsystem");
+        $sql = "DELETE FROM users WHERE idusers=?";
+        
+        if(!$stmt = $conn->prepare($sql))
+        {
+            echo "False";
+        }
+        else
+        {
+            $stmt->bind_param("s", $userid);
+            if(!$stmt->execute())
+            {
+                echo "Failed to delete";
+            }
+            else
+            {
+                echo "Sucessfull Deletion";
+            }
+        }
+    }
 }
 ?>

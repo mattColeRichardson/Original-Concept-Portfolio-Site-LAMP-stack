@@ -13,13 +13,17 @@ else
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="Model/Classes/imdbAPI.js"></script>
+    <script src="Controller/mediaSearch.js"></script>\
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Orginizer</title>
     <link rel="stylesheet" href="View/Css/header.css">
 </head>
 <body>
-    
+<?php
+include 'View/Search/html/search.html';
+?>
 </body>
 </html>
 

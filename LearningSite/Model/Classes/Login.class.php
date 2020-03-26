@@ -1,6 +1,30 @@
 <?php
 class Login extends DbConnect
 {
+    public function createNewUser($email, $first, $last, $pwd)
+    {
+        $conn = $this->connect("loginsystem");
+        $sql = "INSERT INTO users (emailUsers, firstName, lastName, pwdUsers) VALUES (?, ?, ?, ?)";
+        
+        if(!$stmt = $conn->prepare($sql))
+        {
+            throw new Exception('Could not connect to the database.');
+            return false;
+        }
+        else
+        {
+            $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
+            $stmt->bind_param( "ssss", $email, $first, $last, $hashedpwd);
+            if(!$stmt->execute())
+            {  
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
     public function loginUser($username, $pwd)
     {
         $conn = $this->connect("loginsystem");
@@ -60,6 +84,32 @@ class Login extends DbConnect
         session_unset();
         session_destroy();
         header("Location: ../home");
+    }
+    public function checkExistingEmail($username)
+    {
+        $conn = $this->connect("loginsystem");
+        $sql = "SELECT emailUsers FROM users WHERE emailUsers=?";
+        
+        if(!$stmt = $conn->prepare($sql))
+        {
+            header("Location: ../../register?error=dbError");
+            exit();
+        }
+        else
+        {
+            $stmt->bind_param( "s", $username);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if($stmt->num_rows>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
 ?>

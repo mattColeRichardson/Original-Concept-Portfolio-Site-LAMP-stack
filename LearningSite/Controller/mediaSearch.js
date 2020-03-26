@@ -14,10 +14,6 @@ function mediaSearch()
     {
         this.searchBtn.addEventListener("click", this.search);
         this.searchBox.addEventListener("keypress", this.search);
-
-        this.searchBtnXS.addEventListener("click", this.search);
-        this.searchBoxXS.addEventListener("keypress", this.search);
-
     }
     this.search = function()
     {

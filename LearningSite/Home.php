@@ -13,8 +13,7 @@ else
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="Model/Classes/imdbAPI.js"></script>
-    <script src="Controller/mediaSearch.js"></script>\
+    <script src="Model/JS/Jquery/jquery-3.4.1.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Orginizer</title>
@@ -25,5 +24,9 @@ else
 include 'View/Search/html/search.html';
 ?>
 </body>
+<footer>
+    <script src="Model/JS/imdbAPI.js"></script>
+    <script src="Controller/mediaSearch.js"></script>
+</footer>
 </html>
 

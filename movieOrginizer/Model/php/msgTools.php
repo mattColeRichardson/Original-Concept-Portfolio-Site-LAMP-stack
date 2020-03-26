@@ -32,11 +32,20 @@ class msgTools extends Conn
         else 
         {
             $stmt->bind_param("s", $userID);
-            $stmt->execute();
-            $stmt->bind_result($row);
-            $stmt->fetch_assoc();
+            $result = $stmt->execute();
+            $stmt->store_result();
+            if ($stmt->num_rows>= "1")
+            {
+                while($data = $result->fetch_assoc())
+                {
+
+                }
+            }
+            else{
+                return false;
+            }
             $this->disconnect($conn);
-            return $row;
+            return $data;
         }
     }
     public function lookupSingleMsg($userID, $ID)

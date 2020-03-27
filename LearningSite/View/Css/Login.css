@@ -1,0 +1,9 @@
+.loginForm
+{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    padding-top: 50%;
+}
+.loginform>h2{
+    text-align: center;
+}

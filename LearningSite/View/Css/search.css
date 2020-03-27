@@ -1,13 +1,24 @@
 #searchGrid
 {
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-areas: 
+    "searchTitle searchTitle"
+    "searchBar searchBtn";
     justify-content: center;
-    padding-top: 45vh;
+    padding-top: 50%;
 }
-.centerContent
+.searchTitle
 {
-    
+    grid-area: searchTitle;
+    text-align: center;
+}
+.searchBox
+{
+    grid-area: searchBar;
+}
+.searchBtn
+{
+    grid-area: searchBtn;
 }
 .hideSearch
 {

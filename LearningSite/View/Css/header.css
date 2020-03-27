@@ -9,9 +9,10 @@
 {
     align-self: center;
 }
-.logo{
+.logo
+{
 grid-area: logo;
-width: 6.5vw;
+width: 10vw;
 }
 .centeredLinks
 {

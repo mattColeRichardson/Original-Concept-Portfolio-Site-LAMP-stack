@@ -2,7 +2,7 @@
 include "../Model/Includes/autoLoadCont.inc.php";
 if(isset($_POST['password2']))
 {
-    $login = new Login("loginsystem");
+    $login = new Login();
 
     $username = $_POST['email'];
     $pwd = $_POST['password'];

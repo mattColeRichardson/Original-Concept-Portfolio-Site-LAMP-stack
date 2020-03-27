@@ -89,7 +89,7 @@ function mediaSearch()
     }
     function displaySelected(data)
     {
-        $("#media-search-results").load("View/Html/SelectedMovie.html", function()
+        $("#media-search-results").load("View/SearchResults/Html/selectedMovie.html", function()
         {
             document.getElementById("movieTitle").innerHTML = data.Title;
             document.getElementById("moviePoster").src = data.Poster

@@ -1,8 +1,17 @@
+.displayType
+{
+    display : flex;
+    flex-direction: column;
+}
+.row
+{
+    flex-direction: column;
+}
 .hiddenMov
 {
     display: none;
 }
-.hiddenH1
+.hiddenHead
 {
     display: none;
 }

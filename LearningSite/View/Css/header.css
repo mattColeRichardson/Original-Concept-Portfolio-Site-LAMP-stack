@@ -1,0 +1,19 @@
+.header
+{
+    display: grid;
+    grid-template-areas: "a b c d";
+    column-gap: .5vw;
+    row-gap: .5vw;
+}
+.reviews
+{
+    grid-area: "a";
+    text-decoration: none;
+    padding: .5rem;
+    border-radius: 2.5rem;
+    background-color: aqua;
+}
+.logout
+{
+    
+}

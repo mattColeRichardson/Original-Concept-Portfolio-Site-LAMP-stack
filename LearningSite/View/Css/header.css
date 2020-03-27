@@ -30,11 +30,6 @@ width: 6.5vw;
 {
     grid-area: logout;
     justify-self: right;
-    
-}
-.logoutForm
-{
-    
 }
 .button
 {

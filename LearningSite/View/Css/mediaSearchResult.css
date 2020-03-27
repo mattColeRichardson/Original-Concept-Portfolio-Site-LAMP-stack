@@ -1,7 +1,27 @@
 .displayType
 {
-    display : flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 1vh;
+    padding-top: 1vh;
+    background-color: lightgray;
+    border: 1vw;
+    border-radius: .5rem;
+}
+.mov
+{
+    display: grid;
+    column-gap: .5vw;
+    grid-template-rows: 5vh 5vh 45vh 5vh;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 5vw;
+    text-align: center;
+}
+.movPoster>img
+{
+    height: 45vh;
+    width: 80vw;
 }
 .row
 {

@@ -21,7 +21,10 @@ else
 </head>
 <body>
 <?php
-include 'View/Search/html/search.html';
+if(isset($_SESSION['userId']))
+{
+    include 'View/Search/html/search.html';
+}
 ?>
 </body>
 <footer>

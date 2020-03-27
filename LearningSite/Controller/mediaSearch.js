@@ -43,6 +43,7 @@ function mediaSearch()
             let y=0;
             if(data.Response == "True")
             {
+                document.getElementById("searchDiv").classList.add("hideSearch");
                 while(y <data.Search.length && y <= 8)
                 {
                     document.getElementsByClassName("hiddenMov")[i].classList.remove("hiddenMov");

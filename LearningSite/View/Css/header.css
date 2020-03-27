@@ -1,13 +1,26 @@
 .header
 {
     display: grid;
-    grid-template-areas: "a b c d";
+    grid-template-areas: "logo link1 link3 logoutSpacing logout";
     column-gap: .5vw;
     row-gap: .5vw;
 }
-.reviews
+.allignedLogo
 {
-    grid-area: "a";
+    align-self: center;
+}
+.logo{
+grid-area: logo;
+width: 6.5vw;
+}
+.centeredLinks
+{
+    align-self: center;
+    justify-self: center;
+}
+.link
+{
+    grid-area: link1;
     text-decoration: none;
     padding: .5rem;
     border-radius: 2.5rem;
@@ -15,5 +28,19 @@
 }
 .logout
 {
+    grid-area: logout;
+    justify-self: right;
     
+}
+.logoutForm
+{
+    
+}
+.button
+{
+    background-color: aquamarine;
+    padding: 1vh;
+    font-size: 16px;
+    border: none;
+
 }

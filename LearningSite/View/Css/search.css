@@ -1,3 +1,14 @@
+#searchGrid
+{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    justify-content: center;
+    padding-top: 45vh;
+}
+.centerContent
+{
+    
+}
 .hideSearch
 {
     display: none;

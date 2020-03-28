@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="View/Css/reset.css">
 <link rel="stylesheet" href="View/Css/header.css">
 <?php
 session_start();

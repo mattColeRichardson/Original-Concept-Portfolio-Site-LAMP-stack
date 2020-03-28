@@ -133,5 +133,41 @@ class Login extends DbConnect
             }
         }
     }
+    public function checkUserPassword($password, $userid)
+    {
+        $conn = $this->connect("loginsystem");
+        if (mysqli_connect_errno()) {
+            printf("Connect failed: %s\n", mysqli_connect_error());
+            exit();
+        }
+        if(!$stmt = $conn->prepare("SELECT pwdUsers FROM users WHERE idusers=?"))
+        {
+            throw new Exception('Could not connect to the database.');
+        }
+        else
+        {
+            $stmt->bind_param('s', $userid);
+            $stmt->execute();
+            $stmt->bind_result($pwdUsers);
+
+            if($row = $stmt ->fetch())
+            {
+                $pwdCheck = password_verify($password, $pwdUsers);
+                if($pwdCheck)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                throw new Exception('Could not connect to the database.');
+            }
+        }
+
+    }
 }
 ?>

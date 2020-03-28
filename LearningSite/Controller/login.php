@@ -7,6 +7,5 @@ if(isset($_POST['username']))
     $username = $_POST['username'];
     $password = $_POST['password'];
     $login->loginUser($username, $password);
-
 }
 ?>

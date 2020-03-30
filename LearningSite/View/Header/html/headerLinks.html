@@ -1,4 +1,34 @@
-<div class= "allignedLogo"><a href="/learningsite/Home.php"><img class = "logo" src="View/Img/MovieReel.png" alt="Logo"></a></div>
-<div class= "centeredLinks"><a class= "link" href="/">To Portfolio</a></div>
-<div class= "centeredLinks"><a class= "link" href="myReviews">My Reviews</a></div>
-<div class= "centeredLinks"><a class= "link" href="profile">Profile</a></div>
+
+
+<input class="button" type="button" onclick="location.href='Controller/logout.php';" value="logout" />
+<nav>
+    <div class="content">
+        <div class="links">
+            <a href="Home">Home</a>
+            <a href="Portfolio">Portfolio</a>
+            <a href="Reviews">Reviews</a>
+        </div>
+        <i class="material-icons menu" onclick="menuFunc()">menu</i>
+    </div>
+    <div class="dropdown">
+        <a href="Home">Home</a>
+        <a href="Portfolio">Portfolio</a>
+        <a href="Reviews">Reviews</a>
+    </div>
+</nav>
+<script>
+    var dropdown = document.querySelector("nav .dropdown");
+    var menu = document.querySelector("nav div .menu");
+
+    function menuFunc()
+    {
+        if(dropdown.style.display === "none")
+        {
+            dropdown.style.display = "grid";
+        }
+        else
+        {
+            dropdown.style.display = "none";
+        }
+    }
+</script>

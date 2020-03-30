@@ -1,11 +1,18 @@
+#searchDiv
+{
+   display: grid;
+   grid-template-rows: 40vh 1fr 40vh;
+   grid-template-areas: "." "Search" ".";
+}
 #searchGrid
 {
+    grid-area: Search;
     display: grid;
+    grid-template-columns: 3fr 1fr;
     grid-template-areas: 
     "searchTitle searchTitle"
     "searchBar searchBtn";
     justify-content: center;
-    padding-top: 50%;
 }
 .searchTitle
 {

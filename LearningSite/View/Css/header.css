@@ -1,42 +1,70 @@
-.header
+body
+{
+    background-image: url(/View/Img/bg.jpg);
+    background-size: cover;
+}
+nav
 {
     display: grid;
-    grid-template-areas: "logo link1 link3 logoutSpacing logout";
-    column-gap: .5vw;
-    row-gap: .5vw;
+    grid-template-rows: minmax(min-content, 100px) min-content;
 }
-.allignedLogo
+nav .content
 {
-    align-self: center;
+    background-color: grey;
+    display: grid;
+    place-items: center;
+    grid-auto-flow: column;
+    align-content: space-evenly;
 }
-.logo
+nav .content .links
 {
-grid-area: logo;
-width: 10vw;
+    display: grid;
+    gap: 15px;
+    grid-auto-flow: column;
+    place-items: center;
+    grid-auto-columns: minmax(min-content, 80px);
 }
-.centeredLinks
-{
-    align-self: center;
-    justify-self: center;
-}
-.link
-{
-    grid-area: link1;
+nav .content .links a{
+    color: white;
+    font-size: 16pt;
+    text-emphasis: none;
     text-decoration: none;
-    padding: .5rem;
-    border-radius: 2.5rem;
-    background-color: aqua;
 }
-.logout
+    nav .content .links a:hover
+    {
+        cursor: pointer;
+        color: purple;
+        user-select: none;
+    }
+nav .content .menu
 {
-    grid-area: logout;
-    justify-self: right;
+    display: none;
 }
-.button
+    nav .content .material-icons:hover
+    {
+        cursor: pointer;
+        color: purple;
+        user-select: none;
+    }
+
+nav .dropdown
 {
-    background-color: aquamarine;
-    padding: 1vh;
-    font-size: 16px;
-    border: none;
+    display: none;
+    background-color: grey;
 
 }
+nav .dropdown a{
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0px;
+}
+    nav .dropdown a:hover{
+        background-color: darkgray;
+    }
+@media only screen and (max-width: 700px)
+{
+    nav .content .menu{display: initial;}
+    nav .content .links{display: none;}
+}
+

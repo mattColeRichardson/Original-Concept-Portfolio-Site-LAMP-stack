@@ -46,12 +46,50 @@ nav .content .menu
         color: purple;
         user-select: none;
     }
+nav .account
+{
+    display: none;
+    background-color: grey;
+    text-align: center;
+}
+nav .account a
+{
+    color: white;
+    font-size: 16pt;
+    text-emphasis: none;
+    text-decoration: none;
+    padding: 10px 0px;
+}
+nav .account input
+{
+    color:white;
+    font-size: 16pt;
+    border: none;
+    background-color: grey;
+}
+    nav .account a:hover{
+        background-color: lightgray;
+        cursor: pointer;
+        user-select: none;
+    }
+    nav .account input:hover{
+        cursor: pointer;
+        background-color: lightgray;
+    }
+nav .account input
+{
+    padding: 10px 0px;
+}
 
 nav .dropdown
 {
     display: none;
     background-color: grey;
 
+}
+nav .dropdown{
+    display: none;
+    background-color: grey;
 }
 nav .dropdown a{
     text-decoration: none;
@@ -66,5 +104,40 @@ nav .dropdown a{
 {
     nav .content .menu{display: initial;}
     nav .content .links{display: none;}
+    nav .content
+    {
+        background-color: grey;
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: right;
+        padding-right: 20px;
+    }
+    nav .dropdown a
+    {
+        color: white;
+        font-size: 16pt;
+        text-emphasis: none;
+        text-decoration: none;
+        padding: 10px 0px;
+    }
+    nav .dropdown input {
+        color:white;
+        font-size: 16pt;
+        border: none;
+        background-color: grey;
+        padding: 10px 0px;
+    }
+    nav .dropdown input:hover{
+        background-color: lightgray;
+        cursor: pointer;
+        user-select: none;
+    }
+    nav .content i div
+    {
+        width: 35px;
+        height: 5px;
+        background-color: black;
+        margin: 6px 0;
+    }
 }
 

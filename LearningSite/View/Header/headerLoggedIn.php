@@ -2,6 +2,5 @@
 <div class = "header">
     <?php
     include 'View/Header/html/headerLinks.html';
-    include 'View/Header/html/profile.html';
     ?>
 </div>

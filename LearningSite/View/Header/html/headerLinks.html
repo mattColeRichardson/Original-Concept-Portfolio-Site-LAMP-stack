@@ -1,24 +1,27 @@
-
-
-<input class="button" type="button" onclick="location.href='Controller/logout.php';" value="logout" />
 <nav>
     <div class="content">
         <div class="links">
             <a href="Home">Home</a>
             <a href="Portfolio">Portfolio</a>
             <a href="Reviews">Reviews</a>
+            <a href="#" onclick="dropdownFunc()">Profile</a>
         </div>
-        <i class="material-icons menu" onclick="menuFunc()">menu</i>
+        <i class="menu" onclick="menuFunc()"><div></div><div></div><div></div></i>
+    </div>
+    <div class="account">
+        <a href="profile">Profile</a>
+        <input class="button" type="button" onclick="location.href='Controller/logout.php';" value="logout" />
     </div>
     <div class="dropdown">
-        <a href="Home">Home</a>
+        <a class="dropHome" href="Home">Home</a>
         <a href="Portfolio">Portfolio</a>
         <a href="Reviews">Reviews</a>
+        <input class="button" type="button" onclick="location.href='Controller/logout.php';" value="logout" />
     </div>
 </nav>
 <script>
     var dropdown = document.querySelector("nav .dropdown");
-    var menu = document.querySelector("nav div .menu");
+    var profile = document.querySelector("nav .account");
 
     function menuFunc()
     {
@@ -29,6 +32,16 @@
         else
         {
             dropdown.style.display = "none";
+        }
+    }
+    function dropdownFunc()
+    {
+        if (profile.style.display === "none")
+        {
+            profile.style.display = "grid";
+        }
+        else{
+            profile.style.display = "none";
         }
     }
 </script>

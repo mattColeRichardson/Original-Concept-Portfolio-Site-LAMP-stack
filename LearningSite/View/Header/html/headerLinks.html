@@ -19,29 +19,4 @@
         <input class="button" type="button" onclick="location.href='Controller/logout.php';" value="logout" />
     </div>
 </nav>
-<script>
-    var dropdown = document.querySelector("nav .dropdown");
-    var profile = document.querySelector("nav .account");
-
-    function menuFunc()
-    {
-        if(dropdown.style.display === "none")
-        {
-            dropdown.style.display = "grid";
-        }
-        else
-        {
-            dropdown.style.display = "none";
-        }
-    }
-    function dropdownFunc()
-    {
-        if (profile.style.display === "none")
-        {
-            profile.style.display = "grid";
-        }
-        else{
-            profile.style.display = "none";
-        }
-    }
-</script>
+<script src="View/Header/JS/dropdown.js"></script>

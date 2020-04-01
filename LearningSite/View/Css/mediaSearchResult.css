@@ -1,27 +1,38 @@
 .displayType
 {
     display: grid;
-    grid-template-columns: 1fr;
-    margin-top: 1vh;
-    padding-top: 1vh;
-    background-color: lightgray;
-    border: 1vw;
-    border-radius: .5rem;
-}
-.mov
-{
-    display: grid;
-    column-gap: .5vw;
-    grid-template-rows: 5vh 5vh 45vh 5vh;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 5vw;
+    grid-auto-flow: row;
+    align-items: center;
+    justify-items: center;
     text-align: center;
+    row-gap: 1vh;
+    padding: 1vh 0vh;
+}
+.displayType .mov .gridMov button
+{
+    color:white;
+    font-size: 16pt;
+    border: none;
+    background-color: grey;
+    padding: .5vh 0vh;
+    border-radius: 3rem;
+}
+.mov{
+    background-color: rgb(204, 204, 204);
+    border-radius: .5rem;
+    padding:1vh 1vh;
 }
 .movPoster>img
 {
     height: 45vh;
     width: 80vw;
+    border-radius: 1rem;
+}
+.movieTitle
+{
+    background-color: lightgrey;
+    border-radius: 1rem;
+    padding: .5vh;
 }
 .row
 {
@@ -31,7 +42,31 @@
 {
     display: none;
 }
+.gridMov
+{
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: 1vh;
+}
 .hiddenHead
 {
     display: none;
+}
+@media only screen and (min-width: 700px)
+{
+    .displayType
+    {
+        grid-auto-flow: column;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows:1fr 1fr 1fr ;
+        column-gap: 3vh;
+        row-gap:3vh;
+    }
+    
+    .movPoster>img
+    {
+        height: 45vh;
+        width: 30vw;
+        border-radius: 1rem;
+    }
 }

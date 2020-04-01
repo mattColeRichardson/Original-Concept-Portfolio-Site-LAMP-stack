@@ -95,7 +95,7 @@ function mediaSearch()
             document.getElementById("movieTitle").innerHTML = data.Title;
             document.getElementById("moviePoster").src = data.Poster
             document.getElementById("moviePlot").innerHTML = data.Plot;
-            document.getElementById("movieInfo").innerHTML = "Release Date: "+ data.Year +" Directed By: "+ data.Director + "Genre :" + data.Genre;
+            // document.getElementById("movieInfo").innerHTML = "Release Date: "+ data.Year +" Directed By: "+ data.Director + "Genre :" + data.Genre;
             
             document.cookie = "movieTitle = " + "" + data.Title; // Set the cookie so that we can pass it and parse it in PHP
             document.cookie = "mediaType = " + "" + data.Type;

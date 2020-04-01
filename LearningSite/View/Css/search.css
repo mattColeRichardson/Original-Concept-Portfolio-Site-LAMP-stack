@@ -13,6 +13,22 @@
     "searchTitle searchTitle"
     "searchBar searchBtn";
     justify-content: center;
+    row-gap: 1vh;
+}
+#searchGrid h3
+{
+    font-size: 14pt;
+}
+#searchGrid button
+{
+    border: none;
+    padding: 1vh 0vh;
+}
+#searchGrid input
+{
+    font-size:16pt;
+    padding: 1vh 0vh;
+    text-align: center;
 }
 .searchTitle
 {

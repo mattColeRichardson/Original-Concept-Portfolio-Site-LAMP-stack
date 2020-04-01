@@ -1,16 +1,14 @@
 <link rel="stylesheet" href="View/css/MovieSelected.css">
-<div class = "movieRating">
+<div class = "selectedContainer movieRating">
     <h6 id="movieTitle"></h6>
     <img id="moviePoster" src="#" alt="">
-    <h2>Synopsis:</h2>
-    <p id ="moviePlot"></p>
-    <span id="movieInfo"></span>
-</div>
-    <h6>Rate the move</h6>
-    <form action="Controller/sendToDatabase.php" method="POST">
-        <h1>Notes on the movie</h1>
+    <h5 class = "synopsis">Synopsis:</h5>
+    <p id ="moviePlot" class = "synopsis"></p>
+    <h6 class = "rating">Rate the move</h6>
+    <form action="Controller/sendToDatabase.php" class = "dataForm rating" method="POST">
+        <h5>Notes on the movie</h5>
         <input name = "movieReview" class = "movieReview" type="text">
-        <h1>Select a rating:</h1>
+        <h3>Select a rating:</h3>
         <span class="row" id = "starGroup">
             <img id="1" class = "star" src="View/Img/stargray.png" alt="Rating for movie 1 of 5">
             <img id="2" class = "star" src="View/Img/stargray.png" alt="Rating for movie 2 of 5">

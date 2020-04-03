@@ -55,7 +55,7 @@ function mediaSearch()
                     currentMov = data.Search[i];
                     
                     document.getElementsByClassName("movPoster")[i].innerHTML ='<img src="' + currentMov.Poster +'" alt = "' + currentMov.Title + 'movie Poster"' + '>';
-                    document.getElementsByClassName("movieTitle")[i].innerHTML = 'Title: ' + currentMov.Title;
+                    document.getElementsByClassName("movieTitle")[i].innerHTML =currentMov.Title;
                     document.getElementsByClassName("movieInfo")[i].innerHTML ='Release Date: ' + currentMov.Year;
 
                     i++;
@@ -83,7 +83,7 @@ function mediaSearch()
         var movieTitle = document.getElementsByClassName("movieTitle")[event.target.value];
         movieSelected = event.target.value;
         $("#media-search-results").empty();
-        searchByTitle(movieTitle.innerHTML.slice(7)).then(function(value)//This is a function as part of my IMDBAPI.js and is nessisary for the opperation of this programm 
+        searchByTitle(movieTitle.innerHTML).then(function(value)//This is a function as part of my IMDBAPI.js and is nessisary for the opperation of this programm 
         {
             displaySelected(value);
         });
@@ -97,7 +97,7 @@ function mediaSearch()
             document.getElementById("moviePlot").innerHTML = data.Plot;
             // document.getElementById("movieInfo").innerHTML = "Release Date: "+ data.Year +" Directed By: "+ data.Director + "Genre :" + data.Genre;
             
-            document.cookie = "movieTitle = " + "" + data.Title; // Set the cookie so that we can pass it and parse it in PHP
+            document.cookie = "movieTitle = " + "" + data.Title; 
             document.cookie = "mediaType = " + "" + data.Type;
             loadStars();
         });

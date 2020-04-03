@@ -10,7 +10,7 @@ nav
 }
 nav .content
 {
-    background-color: grey;
+    background-color: rgb(20, 26, 110);
     display: grid;
     place-items: center;
     grid-auto-flow: column;
@@ -33,7 +33,7 @@ nav .content .links a{
     nav .content .links a:hover
     {
         cursor: pointer;
-        color: purple;
+        color: rgb(235, 94, 0);
         user-select: none;
     }
 nav .content .menu
@@ -43,13 +43,13 @@ nav .content .menu
     nav .content .material-icons:hover
     {
         cursor: pointer;
-        color: purple;
+        color: rgb(235, 94, 0);;
         user-select: none;
     }
 nav .account
 {
     display: none;
-    background-color: grey;
+    background-color: rgb(20, 26, 110);
     text-align: center;
 }
 nav .account a
@@ -65,16 +65,18 @@ nav .account input
     color:white;
     font-size: 16pt;
     border: none;
-    background-color: grey;
+    background-color: rgb(20, 26, 110);
 }
     nav .account a:hover{
-        background-color: lightgray;
+        background-color: rgb(25, 32, 131);
         cursor: pointer;
         user-select: none;
+        color: rgb(235, 94, 0);
     }
     nav .account input:hover{
         cursor: pointer;
-        background-color: lightgray;
+        color: rgb(235, 94, 0);
+        background-color: rgb(25, 32, 131);
     }
 nav .account input
 {
@@ -84,12 +86,8 @@ nav .account input
 nav .dropdown
 {
     display: none;
-    background-color: grey;
+    background-color: rgb(20, 26, 110);
 
-}
-nav .dropdown{
-    display: none;
-    background-color: grey;
 }
 nav .dropdown a{
     text-decoration: none;
@@ -98,7 +96,8 @@ nav .dropdown a{
     padding: 10px 0px;
 }
     nav .dropdown a:hover{
-        background-color: darkgray;
+        background-color: rgb(25, 32, 131);
+        color: rgb(235, 94, 0);;
     }
 @media only screen and (max-width: 700px)
 {
@@ -106,7 +105,7 @@ nav .dropdown a{
     nav .content .links{display: none;}
     nav .content
     {
-        background-color: grey;
+        background-color: rgb(20, 26, 110);
         display: grid;
         grid-auto-flow: column;
         justify-content: right;
@@ -124,14 +123,15 @@ nav .dropdown a{
         color:white;
         font-size: 16pt;
         border: none;
-        background-color: grey;
+        background-color: rgb(20, 26, 110);
         padding: 10px 0px;
     }
-    nav .dropdown input:hover{
-        background-color: lightgray;
-        cursor: pointer;
-        user-select: none;
-    }
+        nav .dropdown input:hover{
+            background-color: rgb(25, 32, 131);
+            color: rgb(235, 94, 0);
+            cursor: pointer;
+            user-select: none;
+        }
     nav .content i div
     {
         width: 35px;

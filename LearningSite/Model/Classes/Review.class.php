@@ -51,16 +51,9 @@ class Review extends DbConnect
             }
         }
     }
-    public function logoutUser()
-    {
-        session_start();
-        session_unset();
-        session_destroy();
-        header("Location: ../home");
-    }
     public function checkExistingEmail($username)
     {
-        $conn = $this->connect("ratings");
+        $conn = $this->connect("loginsystem");
         $sql = "SELECT emailUsers FROM users WHERE emailUsers=?";
         
         if(!$stmt = $conn->prepare($sql))
@@ -84,10 +77,10 @@ class Review extends DbConnect
             }
         }
     }
-    public function deleteUser($userid)
+    public function deleteRating($userid, $reviewId)
     {
         $conn = $this->connect("ratings");
-        $sql = "DELETE FROM users WHERE idusers=?";
+        $sql = "DELETE FROM ratedmovies WHERE IdUsers=? AND ID=?";
         
         if(!$stmt = $conn->prepare($sql))
         {
@@ -95,7 +88,7 @@ class Review extends DbConnect
         }
         else
         {
-            $stmt->bind_param("s", $userid);
+            $stmt->bind_param("ss", $userid, $reviewId);
             if(!$stmt->execute())
             {
                 echo "Failed to delete";
@@ -105,6 +98,17 @@ class Review extends DbConnect
                 echo "Sucessfull Deletion";
             }
         }
+    }
+    public function spitOutReview($movieTitle, $review, $rating, $userId)//need the userID for the delete process after i finish the table display
+    {
+        echo "<h3>".$movieTitle."<h3>"."<span>".$review."</span>"."<span>".$rating."</span>"."<button class=".$userId." deleteRating>Delete</button>";
+    }
+    public function lookupReviewForTable($idUsers)
+    {
+        $conn = $this->connect("ratings");
+        $sql = "SELECT mediaTitle mediaRating review idUsers FROM ratedmovies WHERE IdUsers=?"; //Still working on the lodgic behind pulling data from the database to parse into a table.
+
+        $this->spitOutReview($movieTitle, $review,$rating,$userId);
     }
 }
 ?>

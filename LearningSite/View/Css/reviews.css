@@ -6,13 +6,30 @@
 .buttons
 {
     display: grid;
-    grid-auto-flow: column;
+    grid-auto-flow: row;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 2px;
+    padding-bottom: 10px;
 }
 .reviewTable
 {
     display: grid;
-    grid-auto-flow: column;
+    grid-auto-flow: row;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 2px;
+    row-gap: 5px;
 }
 .container h1{
     text-align: center;
+}
+h2{
+    text-align: center;
+}
+.userData
+{
+    text-align: center;
+    background-color: rgb(235, 94, 0);
+    border: black;
+    border: 2px;
+    border-style: dotted;
 }

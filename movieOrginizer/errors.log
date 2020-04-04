@@ -5,3 +5,10 @@ Stack trace:
 #2 C:\xampp\htdocs\movieOrginizer\Home.php(52): include('C:\\xampp\\htdocs...')
 #3 {main}
   thrown in C:\xampp\htdocs\movieOrginizer\Model\php\msgTools.php on line 39
+[03-Apr-2020 17:26:45 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in C:\xampp\htdocs\movieOrginizer\Model\php\msgTools.php:39
+Stack trace:
+#0 C:\xampp\htdocs\movieOrginizer\View\php\Messages.php(10): msgTools->lookupUsersMsgs(2)
+#1 C:\xampp\htdocs\movieOrginizer\View\php\SearchHeader.php(26): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\movieOrginizer\Home.php(52): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\movieOrginizer\Model\php\msgTools.php on line 39

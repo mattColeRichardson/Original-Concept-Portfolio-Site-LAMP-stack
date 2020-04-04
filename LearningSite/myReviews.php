@@ -18,6 +18,9 @@ else
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Reviews</title>
+    <?php
+    $reviews = new Review();
+    ?>
 </head>
 <body>
 <div class="container"> 
@@ -34,6 +37,9 @@ else
         <h2 class = "TableHead">Review</h2>
         <h2 class = "TableHead">Rating</h2>
         <h2 class = "TableHead">Delete?</h2>
+        <?php
+        $usersReviews = $reviews->lookupReviewForTable($_SESSION['userId']);
+        ?>
     </div>
     
 </div>

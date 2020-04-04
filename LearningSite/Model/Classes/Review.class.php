@@ -106,9 +106,44 @@ class Review extends DbConnect
     public function lookupReviewForTable($idUsers)
     {
         $conn = $this->connect("ratings");
-        $sql = "SELECT mediaTitle mediaRating review idUsers FROM ratedmovies WHERE IdUsers=?"; //Still working on the lodgic behind pulling data from the database to parse into a table.
+        $sql = "SELECT mediaTitle, mediaRating, review FROM ratedmovies WHERE IdUsers=?"; //Still working on the lodgic behind pulling data from the database to parse into a table.
 
-        $this->spitOutReview($movieTitle, $review,$rating,$userId);
+        if(!$stmt = $conn->prepare($sql))
+        {
+            header("Location: myReviews?error=dbError");
+        }
+        else{
+            $stmt->bind_param( "s", $idUsers);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $i = 0;
+            $count = 0;
+            while($row = $result->fetch_array(MYSQLI_NUM))
+            {
+                foreach($row as $r)
+                {
+                    if($count < ($result->num_rows * 3) - 1)
+                    {
+                        if ($i <= 2)
+                        {
+                            echo "<h3 class = 'userData'> $r </h3>";
+                            $i++;
+                        }
+                        else
+                        {
+                            echo "<button class=".$idUsers." deleteRating>Delete</button>"; // Need to figure out what to pass to the button to do the deleting of the data later.
+                            echo "<h3 class = 'userData'> $r </h3>";
+                            $i=0;
+                        }
+                    }
+                    else{
+                        echo "<h3 class = 'userData'> $r </h3>";
+                        echo "<button class=".$idUsers." deleteRating>Delete</button>";
+                    }
+                    $count++;
+                }
+            }  
+        }
     }
 }
 ?>

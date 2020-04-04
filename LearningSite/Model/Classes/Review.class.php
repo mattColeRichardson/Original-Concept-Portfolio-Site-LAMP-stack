@@ -77,8 +77,9 @@ class Review extends DbConnect
             }
         }
     }
-    public function deleteRating($userid, $reviewId)
+    public function deleteRating($userid, $reviewID)
     {
+        echo "this is idUsers(IdUsers) = ".$userid." this is reviewID (ID)".$reviewID;
         $conn = $this->connect("ratings");
         $sql = "DELETE FROM ratedmovies WHERE IdUsers=? AND ID=?";
         
@@ -106,7 +107,7 @@ class Review extends DbConnect
     public function lookupReviewForTable($idUsers)
     {
         $conn = $this->connect("ratings");
-        $sql = "SELECT mediaTitle, mediaRating, review FROM ratedmovies WHERE IdUsers=?"; //Still working on the lodgic behind pulling data from the database to parse into a table.
+        $sql = "SELECT mediaTitle, mediaRating, review, ID FROM ratedmovies WHERE IdUsers=?"; //Still working on the lodgic behind pulling data from the database to parse into a table.
 
         if(!$stmt = $conn->prepare($sql))
         {
@@ -122,7 +123,7 @@ class Review extends DbConnect
             {
                 foreach($row as $r)
                 {
-                    if($count < ($result->num_rows * 3) - 1)
+                    if($count < ($result->num_rows * 4) - 1)
                     {
                         if ($i <= 2)
                         {
@@ -131,14 +132,14 @@ class Review extends DbConnect
                         }
                         else
                         {
-                            echo "<button class=".$idUsers." deleteRating>Delete</button>"; // Need to figure out what to pass to the button to do the deleting of the data later.
-                            echo "<h3 class = 'userData'> $r </h3>";
+                            echo "<button id = ".$r." class=deleteRating>Delete</button>"; // Need to figure out what to pass to the button to do the deleting of the data later.
+                            //echo "<h3 class = 'userData'> $r </h3>";
                             $i=0;
                         }
                     }
                     else{
-                        echo "<h3 class = 'userData'> $r </h3>";
-                        echo "<button class=".$idUsers." deleteRating>Delete</button>";
+                            // echo "<h3 class = 'userData'> $r </h3>";
+                            echo "<button id = ".$r." class=deleteRating>Delete</button>";
                     }
                     $count++;
                 }

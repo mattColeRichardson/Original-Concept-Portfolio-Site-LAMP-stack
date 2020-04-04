@@ -1,6 +1,14 @@
-<link rel="stylesheet" href="View/Css/reset.css">
-<link rel="stylesheet" href="View/Css/header.css">
-<link rel="stylesheet" href="View/Css/reviews.css">
+
+<head>
+    <script src="Model/JS/Jquery/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="View/Css/reset.css">
+    <link rel="stylesheet" href="View/Css/header.css">
+    <link rel="stylesheet" href="View/Css/reviews.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reviews</title>
+</head>
+<header>
 <?php
 session_start();
 include 'Model/Includes/autoLoad.inc.php';
@@ -12,16 +20,9 @@ else
 {
     include 'View/Header/headerLoggedIn.php';
 }
+$reviews = new Review();
 ?>
-<head>
-    <script src="Model/JS/Jquery/jquery-3.4.1.min.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Reviews</title>
-    <?php
-    $reviews = new Review();
-    ?>
-</head>
+</header>
 <body>
 <div class="container"> 
     <h1>Your Reviews for movies and tv shows.</h1>
@@ -45,3 +46,6 @@ else
 </div>
     
 </body>
+<footer>
+    <script src="Controller/myReviewDeleteButton.js"></script>
+</footer>

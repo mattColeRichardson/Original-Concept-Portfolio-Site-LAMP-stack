@@ -48,4 +48,5 @@ $reviews = new Review();
 </body>
 <footer>
     <script src="Controller/myReviewDeleteButton.js"></script>
+    <script src="Controller/myReviewOrginizeButtons.js"></script>
 </footer>

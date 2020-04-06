@@ -79,30 +79,23 @@ class Review extends DbConnect
     }
     public function deleteRating($userid, $reviewID)
     {
-        echo "this is idUsers(IdUsers) = ".$userid." this is reviewID (ID)".$reviewID;
         $conn = $this->connect("ratings");
         $sql = "DELETE FROM ratedmovies WHERE IdUsers=? AND ID=?";
-        
         if(!$stmt = $conn->prepare($sql))
         {
             echo "False";
         }
         else
         {
-            $stmt->bind_param("ss", $userid, $reviewId);
-            if(!$stmt->execute())
+            $stmt->bind_param("ss", $userid, $reviewID);
+            if($stmt->execute())
             {
-                echo "Failed to delete";
+                echo "Deleted successfully";
             }
-            else
-            {
-                echo "Sucessfull Deletion";
+            else{
+                echo "could not delete successfully";
             }
         }
-    }
-    public function spitOutReview($movieTitle, $review, $rating, $userId)//need the userID for the delete process after i finish the table display
-    {
-        echo "<h3>".$movieTitle."<h3>"."<span>".$review."</span>"."<span>".$rating."</span>"."<button class=".$userId." deleteRating>Delete</button>";
     }
     public function lookupReviewForTable($idUsers)
     {

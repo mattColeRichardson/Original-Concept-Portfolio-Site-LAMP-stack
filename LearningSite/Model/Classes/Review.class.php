@@ -100,7 +100,7 @@ class Review extends DbConnect
     public function lookupReviewForTable($idUsers)
     {
         $conn = $this->connect("ratings");
-        $sql = "SELECT mediaTitle, mediaRating, review, ID FROM ratedmovies WHERE IdUsers=?"; //Still working on the lodgic behind pulling data from the database to parse into a table.
+        $sql = "SELECT mediaTitle, mediaRating, review, ID, mediaType FROM ratedmovies WHERE IdUsers=?"; //Still working on the lodgic behind pulling data from the database to parse into a table.
 
         if(!$stmt = $conn->prepare($sql))
         {
@@ -116,23 +116,26 @@ class Review extends DbConnect
             {
                 foreach($row as $r)
                 {
-                    if($count < ($result->num_rows * 4) - 1)
+                    if($count < ($result->num_rows * 5) - 1)
                     {
                         if ($i <= 2)
                         {
-                            echo "<h3 class = 'userData'> $r </h3>";
+                            echo "<span class = 'userData'> $r </span>";
                             $i++;
                         }
-                        else
+                        elseif ($i == 3)
                         {
-                            echo "<button id = ".$r." class=deleteRating>Delete</button>"; // Need to figure out what to pass to the button to do the deleting of the data later.
-                            //echo "<h3 class = 'userData'> $r </h3>";
+                            echo "<button id = ".$r." class=deleteRating>Delete</button>";
+                            $i++;
+                        }
+                        else{
+                            echo "<span class = 'mediaType' id=".$r."></span>";
                             $i=0;
                         }
                     }
                     else{
-                            // echo "<h3 class = 'userData'> $r </h3>";
-                            echo "<button id = ".$r." class=deleteRating>Delete</button>";
+                        echo "<span class = 'mediaType' id=".$r."></span>";
+                            
                     }
                     $count++;
                 }

@@ -30,7 +30,7 @@ $reviews = new Review();
         <button id="showsort">Tv Shows</button>
         <button id="moviesort">Movies</button>
         <button id="favsort">My favs</button>
-        <button id="worstsort">Worst movies</button>
+        <button id="worstsort">Worst Media</button>
     </div>
     <title>Your reviews table</title>
     <div class="reviewTable" id = "reviewSection">

@@ -100,7 +100,7 @@ class Review extends DbConnect
     public function lookupReviewForTable($idUsers)
     {
         $conn = $this->connect("ratings");
-        $sql = "SELECT mediaTitle, mediaRating, review, ID, mediaType FROM ratedmovies WHERE IdUsers=?"; //Still working on the lodgic behind pulling data from the database to parse into a table.
+        $sql = "SELECT mediaTitle, mediaRating, review, ID, mediaType, DateAndTime FROM ratedmovies WHERE IdUsers=?"; //Still working on the lodgic behind pulling data from the database to parse into a table.
 
         if(!$stmt = $conn->prepare($sql))
         {
@@ -116,7 +116,7 @@ class Review extends DbConnect
             {
                 foreach($row as $r)
                 {
-                    if($count < ($result->num_rows * 5) - 1)
+                    if($count < ($result->num_rows * 6) - 1)
                     {
                         if ($i <= 2)
                         {
@@ -125,17 +125,21 @@ class Review extends DbConnect
                         }
                         elseif ($i == 3)
                         {
-                            echo "<button id = ".$r." class=deleteRating>Delete</button>";
+                            echo "<button id = '".$r."' class='deleteRating'>Delete</button>";
+                            $i++;
+                        }
+                        elseif ($i == 4)
+                        {
+                            echo "<span class = 'mediaType' id='".$r."'></span>";
                             $i++;
                         }
                         else{
-                            echo "<span class = 'mediaType' id=".$r."></span>";
+                            echo "<span class = '".$r."' id=DateAndTime></span>";
                             $i=0;
                         }
                     }
                     else{
-                        echo "<span class = 'mediaType' id=".$r."></span>";
-                            
+                        echo "<span class = '".$r."' id=DateAndTime></span>";
                     }
                     $count++;
                 }

@@ -60,16 +60,18 @@ function addOtherAttributes()
         arrOfReviews[x].deleteBtn = data.id;
         x++;
     });
-    if(x == $(".deleteRating").length)
-    {
-        x = 0;
-    }
+    x = 0;
     document.querySelectorAll(".mediaType").forEach(function(data)
     {
         arrOfReviews[x].type = data.id;
         x++;
     });
-
+    x = 0;
+    document.querySelectorAll("#DateAndTime").forEach(function(data)
+    {
+        arrOfReviews[x].date = data.className;
+        x++;
+    });
 }
 $("#showsort").click(function (e) { 
     if(isSortedBy != "show")
@@ -133,19 +135,19 @@ function sortAllTheThings(isSortedBy)
     switch(isSortedBy)
     {
         case "show":
-            arrOfReviews.sort((a,b) => (a.type < b.type) ? 1: -1)
+            arrOfReviews.sort((a,b) => (a.type < b.type  || a.title > b.title) ? 1: -1)
             console.log(arrOfReviews);
             break;
         case "movie":
-            arrOfReviews.sort((a,b) => (a.type > b.type) ? 1: -1)
+            arrOfReviews.sort((a,b) => (a.type > b.type  || a.title > b.title) ? 1: -1)
             console.log(arrOfReviews);
             break;
         case "fav":
-            arrOfReviews.sort((a,b) => (a.rating < b.rating) ? 1: -1)
+            arrOfReviews.sort((a,b) => (a.rating < b.rating || a.title > b.title) ? 1: -1)
             console.log(arrOfReviews);
             break;
         case "worst":
-            arrOfReviews.sort((a,b) => (a.rating > b.rating) ? 1: -1)
+            arrOfReviews.sort((a,b) => (a.rating > b.rating || a.title > b.title) ? 1: -1)
             console.log(arrOfReviews);
             break;
     }
@@ -159,4 +161,5 @@ function displayAllTheThings()
         "<span class='userData'> " + data.review + " </span>" + 
         "<button id="+ data.deleteBtn +" class='deleteRating' >Delete</button>");
     });
+   $.getScript("Controller/myReviewDeleteButton.js");
 }

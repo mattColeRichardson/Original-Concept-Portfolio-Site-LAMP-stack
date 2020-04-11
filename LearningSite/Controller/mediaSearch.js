@@ -5,6 +5,7 @@ function mediaSearch()
 
     this.starChange;
     this.starValue;
+    this.searchHeaderBox;
     var that = this;
     this.clearScreen = function()
     {
@@ -15,11 +16,26 @@ function mediaSearch()
         this.searchBtn.addEventListener("click", this.search);
         this.searchBox.addEventListener("keypress", this.search);
     }
+    this.listenforHeader = function()
+    {
+        document.getElementById("searchHeaderBox").addEventListener("keypress", this.search)
+        document.getElementById("searchHeaderBtn").addEventListener("click", this.search);
+        this.searchHeaderBox = document.getElementById("searchHeaderBox");
+    }
     this.search = function()
     {
         if (event.which === 13 || event.which === 1)
         {
-            userSearch = that.searchBox.value;
+            if (that.searchHeaderBox != undefined)
+            {
+
+                userSearch = that.searchHeaderBox.value;
+            }
+            else
+            {
+                userSearch = that.searchBox.value;
+            }    
+            
             if (userSearch == "")
             {
                 //do nothing if user does not search for anything.
@@ -60,6 +76,10 @@ function mediaSearch()
 
                     i++;
                 } 
+                $("#searchBarDiv").html('<input class ="searchBox centerContent" id = "searchHeaderBox" name="search" type="text">')
+                $("#searchBtnDiv").html('<button class="searchBtn centerContent button" id = "searchHeaderBtn" type="submit">Search</button>');
+                that.listenforHeader();
+                
                 listenForUserChoise();
             }
             else

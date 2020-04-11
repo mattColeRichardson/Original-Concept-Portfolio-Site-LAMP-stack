@@ -1,147 +1,107 @@
-body
-{
-    background-image: url(/View/Img/bg.jpg);
-    background-size: cover;
-}
-nav
-{
+nav{
     display: grid;
-    grid-template-rows: minmax(min-content, 100px) min-content;
+    background-color: darkblue;
 }
-nav .content
+nav .dropdown
 {
-    background-color: rgb(20, 26, 110);
-    display: grid;
-    place-items: center;
-    grid-auto-flow: column;
-    align-content: space-evenly;
+    display: none;
 }
-nav .content .links
+nav .account
 {
-    display: grid;
-    gap: 15px;
-    grid-auto-flow: column;
-    place-items: center;
-    grid-auto-columns: minmax(min-content, 80px);
+    display: none;
 }
-nav .content .links a{
-    color: white;
-    font-size: 16pt;
-    text-emphasis: none;
-    text-decoration: none;
-}
-    nav .content .links a:hover
-    {
-        cursor: pointer;
-        color: rgb(235, 94, 0);
-        user-select: none;
-    }
 nav .content .menu
 {
     display: none;
 }
-    nav .content .material-icons:hover
-    {
-        cursor: pointer;
-        color: rgb(235, 94, 0);;
-        user-select: none;
-    }
-nav .account
-{
-    display: none;
-    background-color: rgb(20, 26, 110);
-    text-align: center;
-}
-nav .account a
-{
-    color: white;
-    font-size: 16pt;
-    text-emphasis: none;
-    text-decoration: none;
-    padding: 10px 0px;
-}
-nav .account input
-{
-    color:white;
-    font-size: 16pt;
-    border: none;
-    background-color: rgb(20, 26, 110);
-}
-    nav .account a:hover{
-        background-color: rgb(25, 32, 131);
-        cursor: pointer;
-        user-select: none;
-        color: rgb(235, 94, 0);
-    }
-    nav .account input:hover{
-        cursor: pointer;
-        color: rgb(235, 94, 0);
-        background-color: rgb(25, 32, 131);
-    }
-nav .account input
-{
-    padding: 10px 0px;
-}
-
-nav .dropdown
-{
-    display: none;
-    background-color: rgb(20, 26, 110);
-
-}
-nav .dropdown a{
-    text-decoration: none;
-    text-align: center;
-    width: 100%;
-    padding: 10px 0px;
-}
-    nav .dropdown a:hover{
-        background-color: rgb(25, 32, 131);
-        color: rgb(235, 94, 0);;
-    }
-div .searchbar
-{
-    
-}
 @media only screen and (max-width: 700px)
 {
-    nav .content .menu{display: initial;}
-    nav .content .links{display: none;}
-    nav .content
-    {
-        background-color: rgb(20, 26, 110);
-        display: grid;
-        grid-auto-flow: column;
-        justify-content: right;
-        padding-right: 20px;
+    nav .content{
+        display:grid;
+        grid-template-columns: 3fr 1fr 1fr;
+        grid-template-areas: "searchBar searchBtn sandwich";
     }
-    nav .dropdown a
-    {
-        color: white;
-        font-size: 16pt;
-        text-emphasis: none;
-        text-decoration: none;
-        padding: 10px 0px;
-    }
-    nav .dropdown input {
-        color:white;
-        font-size: 16pt;
-        border: none;
-        background-color: rgb(20, 26, 110);
-        padding: 10px 0px;
-    }
-        nav .dropdown input:hover{
-            background-color: rgb(25, 32, 131);
-            color: rgb(235, 94, 0);
-            cursor: pointer;
-            user-select: none;
+        nav .content .menu{display: initial;}
+        nav .content .links{display: none;}
+        nav .content #searchBarDiv
+        {
+            grid-area: searchBar;
+            justify-self: center;
+            align-self: center;
+            height:100%;
+            width: 100%;
         }
-    nav .content i div
-    {
-        width: 35px;
-        height: 5px;
-        background-color: white;
-        margin: 6px 0;
+            nav .content #searchBarDiv input
+            {
+                width: 100%;
+                height: 70%;
+                margin-top: 2.5%;
+                margin-left: 10px;
+                margin-right: 10px;
+                border: none;
+                font-size: 16px;
+                text-align: center;
+                text-justify: center;
+            }
+        nav .content #searchBtnDiv
+        {
+            grid-area: searchBtn;
+            justify-self: center;
+            align-self: center;
+        }
+            nav .content #searchBtnDiv button
+            {
+                font-size: 100%;
+                font-family: inherit;
+                border: none;
+                padding: 1vh 1vw;
+                border-radius: 2.5rem;
+                color: white;
+                background-color: blue;
+            }
+        nav .content .menu{
+            grid-area: sandwich;
+            justify-self: center;
+            align-self: center;
+            padding-top: .75vh;
+            padding-bottom: .75vh;
+        }
+            nav .content i div{
+                width: 35px;
+                height: 5px;
+                background-color: white;
+                margin: 6px 0;
+            }
+    nav .dropdown{
+        row-gap: 5px;
     }
+        nav .dropdown a {
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+            nav .dropdown a:hover{
+                background-color: rgb(0, 0, 172);
+            }
+        nav .dropdown input 
+        {
+            background-color: darkblue;
+            border: none;
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+            nav .dropdown input:hover{
+                background-color: rgb(0, 0, 172);
+            }
 }
-

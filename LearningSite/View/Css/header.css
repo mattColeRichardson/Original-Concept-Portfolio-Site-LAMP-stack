@@ -99,6 +99,10 @@ nav .dropdown a{
         background-color: rgb(25, 32, 131);
         color: rgb(235, 94, 0);;
     }
+div .searchbar
+{
+    
+}
 @media only screen and (max-width: 700px)
 {
     nav .content .menu{display: initial;}
@@ -136,7 +140,7 @@ nav .dropdown a{
     {
         width: 35px;
         height: 5px;
-        background-color: black;
+        background-color: white;
         margin: 6px 0;
     }
 }

@@ -34,6 +34,7 @@ if(isset($_SESSION['userId']))
 <footer>
     <script src="Model/JS/imdbAPI.js"></script>
     <script src="Controller/mediaSearch.js"></script>
+    <script src="View/Header/JS/headerSearchBar.js"></script>
 </footer>
 </html>
 

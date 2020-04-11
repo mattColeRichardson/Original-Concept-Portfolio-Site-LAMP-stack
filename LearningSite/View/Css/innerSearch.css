@@ -1,0 +1,49 @@
+#searchDiv
+{
+   display: grid;
+   grid-template-rows:1fr;
+   grid-template-areas: "Search";
+}
+#searchGrid
+{
+    grid-area: Search;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: 
+    "searchTitle searchTitle"
+    "searchBar searchBtn";
+    justify-content: center;
+    row-gap: 1vh;
+}
+#searchGrid h3
+{
+    font-size: 14pt;
+}
+#searchGrid button
+{
+    border: none;
+    padding: 1vh 0vh;
+}
+#searchGrid input
+{
+    font-size:16pt;
+    padding: 1vh 0vh;
+    text-align: center;
+}
+.searchTitle
+{
+    grid-area: searchTitle;
+    text-align: center;
+}
+.searchBox
+{
+    grid-area: searchBar;
+}
+.searchBtn
+{
+    grid-area: searchBtn;
+}
+.hideSearch
+{
+    display: none;
+}

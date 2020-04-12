@@ -3,6 +3,7 @@
    display: grid;
    grid-template-rows: 40vh 1fr 40vh;
    grid-template-areas: "." "Search" ".";
+   
 }
 #searchGrid
 {

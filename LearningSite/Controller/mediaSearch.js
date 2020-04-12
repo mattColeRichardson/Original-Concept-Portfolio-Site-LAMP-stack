@@ -10,6 +10,7 @@ function mediaSearch()
     this.clearScreen = function()
     {
         $("#media-search-results").empty();
+        $(".mov").addClass("hiddenMov");
     }
     this.listenForUserSearch = function()
     {
@@ -57,19 +58,15 @@ function mediaSearch()
         {
             let i=0;
             let y=0;
+            
             if(data.Response == "True")
             {
                 document.getElementById("DisplayNone").classList.add("hideSearch");
-                while(y <data.Search.length && y <= 8)
-                {
-                    document.getElementsByClassName("hiddenMov")[i].classList.remove("hiddenMov");
-                    y++;
-                }
-
+                
                 while(i < data.Search.length && i <= 8)
                 {
                     currentMov = data.Search[i];
-                    
+                    document.getElementsByClassName("mov")[i].classList.remove("hiddenMov")
                     document.getElementsByClassName("movPoster")[i].innerHTML ='<img src="' + currentMov.Poster +'" alt = "' + currentMov.Title + 'movie Poster"' + '>';
                     document.getElementsByClassName("movieTitle")[i].innerHTML =currentMov.Title;
                     document.getElementsByClassName("movieInfo")[i].innerHTML ='Release Date: ' + currentMov.Year;

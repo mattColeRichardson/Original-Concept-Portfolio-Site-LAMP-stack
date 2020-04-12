@@ -2,20 +2,54 @@ nav{
     display: grid;
     background-color: darkblue;
 }
-nav .dropdown
+
+@media only screen and (min-width: 700px)
 {
-    display: none;
-}
-nav .account
-{
-    display: none;
-}
-nav .content .menu
-{
-    display: none;
+    nav .dropdown{display: none;}
+    nav .account{display: none;}
+    nav .content .menu{display: none;}
+    nav .content{
+        display: grid;
+        grid-template-areas: "links searchBar searchBtn ";
+        grid-template-columns: 7fr 3fr 1fr;
+        align-items: center;
+        justify-items: center;
+    }
+    nav .content .links
+    {
+        grid-area: links;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        justify-self: left;
+    }
+        nav .content .links a{
+            color: white;
+            text-decoration: none;
+            padding: 20px;
+        }
+        nav .content #searchBarDiv
+        {
+            grid-area: searchBar;
+            justify-content: center;
+            align-self: center;
+            width: 100%;
+        }
+            nav .content #searchBarDiv input
+            {
+                width: 100%;
+                border: none;
+                font-size: 16px;
+                text-align: center;
+                text-justify: center;
+            }
+        nav .content #searchBtnDiv
+        {
+            grid-area: searchBtn;
+        }
 }
 @media only screen and (max-width: 700px)
 {
+    
     nav .content{
         display:grid;
         grid-template-columns: 3fr 1fr 1fr;
@@ -23,6 +57,8 @@ nav .content .menu
     }
         nav .content .menu{display: initial;}
         nav .content .links{display: none;}
+        nav .dropdown{display: none;}
+        nav .account{display: none;}
         nav .content #searchBarDiv
         {
             grid-area: searchBar;

@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="view/css/movieselected.css">
+<div class = "selectedContainer movieRating">
+    <h6 id="movieTitle"></h6>
+    <img id="moviePoster" src="#" alt="">
+    <h5 class = "synopsis">Synopsis:</h5>
+    <p id ="moviePlot" class = "synopsis"></p>
+    <h6 class = "rating">Rate the move</h6>
+    <form action="controller/sendtodatabase.php" class = "dataForm rating" method="POST">
+        <h5>Notes on the movie</h5>
+        <input name = "movieReview" class = "movieReview" type="text">
+        <h3>Select a rating:</h3>
+        <span class="row" id = "starGroup">
+            <img id="1" class = "star" src="view/img/stargray.png" alt="Rating for movie 1 of 5">
+            <img id="2" class = "star" src="view/img/stargray.png" alt="Rating for movie 2 of 5">
+            <img id="3" class = "star" src="view/img/stargray.png" alt="Rating for movie 3 of 5">
+            <img id="4" class = "star" src="view/img/stargray.png" alt="Rating for movie 4 of 5">
+            <img id="5" class = "star" src="view/img/stargray.png" alt="Rating for movie 5 of 5">
+        </span>
+        <button class="btn btn-primary rateSubmit" name="submit" type="submit">Submit</button>
+    </form>
+</div>

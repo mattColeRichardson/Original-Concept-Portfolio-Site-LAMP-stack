@@ -1,0 +1,25 @@
+<nav>
+    <div class="content">
+        <div id="searchBarDiv"></div>
+        <div id="searchBtnDiv"></div>
+        <div class="links">
+            <a href="home.php">Home</a>
+            <a href="../index.html">Portfolio</a>
+            <a href="myreviews.php">Reviews</a>
+            <a href="#" onclick="dropdownFunc()">Profile</a>
+        </div>
+        <i class="menu" onclick="menuFunc()"><div></div><div></div><div></div></i>
+    </div>
+    <div class="account">
+        <a href="profile">Profile</a>
+        <input class="button" type="button" onclick="location.href='controller/logout.php';" value="logout" />
+    </div>
+    <div class="dropdown">
+        <a class="dropHome" href="home">Home</a>
+        <a href="../index.html">Portfolio</a>
+        <a href="myreviews.php">Reviews</a>
+        <a href="profile.php">Profile</a>
+        <input class="button" type="button" onclick="location.href='controller/logout.php';" value="logout" />
+    </div>
+</nav>
+<script src="view/header/js/dropdown.js"></script>
